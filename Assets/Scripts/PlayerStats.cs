@@ -4,9 +4,9 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     [Header("Health")]
-    [SerializeField] private float maxHealth = 6f; 
+    [SerializeField] private float maxHealth = 6f; //hearts
     [SerializeField] private float currentHealth = 6f;
-    [Tooltip("Seconds of invincibility after taking a hit")]
+    [Tooltip("Seconds of invincibility after taking a hit, so you can't be hit 10 times in one frame.")]
     [SerializeField] private float invincibilityTime = 1f;
 
     [Header("State Meter")]
@@ -19,9 +19,9 @@ public class PlayerStats : MonoBehaviour
     [SerializeField] private float visibleThreshold = 75f;
 
     [Header("Other (not used yet)")]
-    [SerializeField] private float damageTakenMultiplier = 1f; 
-    [SerializeField] private int helpfulActionsDone;          
-    [SerializeField] private int aggressiveActionsDone;     
+    [SerializeField] private float damageTakenMultiplier = 1f; //raise this when aggression lowers the State Meter
+    [SerializeField] private int helpfulActionsDone; //civilians helped, things repaired, etc.
+    [SerializeField] private int aggressiveActionsDone; //attacks on the signature enemy, etc.
 
     public float MaxHealth => maxHealth;
     public float CurrentHealth => currentHealth;
@@ -31,6 +31,8 @@ public class PlayerStats : MonoBehaviour
     public float StateMeter => stateMeter;
     public float MaxStateMeter => maxStateMeter;
     public float StateMeter01 => maxStateMeter > 0f ? stateMeter / maxStateMeter : 0f;
+    public float GlimpsedThreshold => glimpsedThreshold;
+    public float VisibleThreshold => visibleThreshold;
 
     public float DamageTakenMultiplier
     {
@@ -41,6 +43,7 @@ public class PlayerStats : MonoBehaviour
     public int HelpfulActionsDone => helpfulActionsDone;
     public int AggressiveActionsDone => aggressiveActionsDone;
 
+    //Unseen / Glimpsed / Visible, based on the State Meter thresholds above
     public PerceptionLevel CurrentPerception
     {
         get
@@ -51,11 +54,11 @@ public class PlayerStats : MonoBehaviour
         }
     }
 
-    public event Action<float, float> OnHealthChanged;   
-    public event Action<float> OnDamaged;                 
-    public event Action<float> OnHealed;                    
+    public event Action<float, float> OnHealthChanged; //max
+    public event Action<float> OnDamaged; //amount taken
+    public event Action<float> OnHealed; //amount healed
     public event Action OnDied;
-    public event Action<float, float> OnStateMeterChanged;
+    public event Action<float, float> OnStateMeterChanged; //max
     public event Action<PerceptionLevel> OnPerceptionChanged;
 
     private float invincibleTimer;
@@ -70,6 +73,7 @@ public class PlayerStats : MonoBehaviour
 
     private void Start()
     {
+        //it lets any UI draw the starting values.
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
         OnStateMeterChanged?.Invoke(stateMeter, maxStateMeter);
     }
@@ -80,6 +84,7 @@ public class PlayerStats : MonoBehaviour
             invincibleTimer -= Time.deltaTime;
     }
 
+    //health
     public void TakeDamage(float amount)
     {
         if (IsDead || IsInvincible || amount <= 0f) return;
@@ -93,6 +98,15 @@ public class PlayerStats : MonoBehaviour
 
         if (IsDead)
             OnDied?.Invoke();
+    }
+
+    //Instantly kills the player, ignoring invincibility
+    public void Kill()
+    {
+        if (IsDead) return;
+        currentHealth = 0f;
+        OnHealthChanged?.Invoke(currentHealth, maxHealth);
+        OnDied?.Invoke();
     }
 
     public void Heal(float amount)
@@ -113,7 +127,7 @@ public class PlayerStats : MonoBehaviour
         OnHealthChanged?.Invoke(currentHealth, maxHealth);
     }
 
-
+    //it is for Positive = improve (helpful actions). Negative = worsen (aggression)
     public void ChangeStateMeter(float amount)
     {
         SetStateMeter(stateMeter + amount);
@@ -136,7 +150,7 @@ public class PlayerStats : MonoBehaviour
     public void RegisterAggressiveAction() => aggressiveActionsDone++;
 
 #if UNITY_EDITOR
-
+    //it keeps values sane when you edit them in the Inspector
     private void OnValidate()
     {
         maxHealth = Mathf.Max(1f, maxHealth);
@@ -148,6 +162,7 @@ public class PlayerStats : MonoBehaviour
 #endif
 }
 
+//it is how well the player can perceive hidden entities
 public enum PerceptionLevel
 {
     Unseen,
