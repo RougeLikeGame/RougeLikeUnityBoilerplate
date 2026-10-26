@@ -158,3 +158,94 @@ Third-party assets, libraries, packages, and tools remain governed by their resp
 •	Would controlled encounter generation be more useful than full procedural level generation?
 •	What is a realistic scope for the available semester and team size?
 
+
+
+
+
+
+
+
+
+
+
+
+
+Scope
+Must (the game fails without it)
+These are the things that, if we do not have them, I feel that we really do not have the prototype that the brief is asking for.
+Player movement: Binding of Isaac-style top-down movement with walking, sprinting, and 4-direction animation. (This one is already working.)
+Health and the State Meter: the player has health and one State Meter value, both shown on screen with a simple UI.
+At least 2 enemy types, each with a documented FSM or behavior tree:
+A ground chaser that uses A* pathfinding to get around rocks and walls.
+An off-axis enemy that can come in from the sides, above, or below the room. It needs telegraphing like a shadow that grows as it gets closer, an arrow on the edge of the screen, and a sound, so that it feels fair.
+Perception states (Unseen -> Glimpsed -> Visible): these are tied to the State Meter. The enemy is always there and always running its AI, and the only thing that changes is how much the player can see of it.
+One civilian NPC: it has an FSM and is scared by default, and it can flee, hide, or follow depending on what is going on and on the State Meter.
+The signature encounter: attacking the enemy actually feeds it and makes it bigger, and helping people is what weakens it.
+Controlled encounter generation: the enemy spawn points and entry directions get picked from premade sets each run, with rules so nothing spawns right on top of the player and nothing attacks without a warning first.
+The required deliverables: a WebGL build on itch.io, the AI documentation, and the process report.
+Should (expected, but we can cut it)
+3–4 enemy types in total instead of just 2.
+A behavior tree version of one of the enemies. The FSM version is the backup, so if we run out of time it is okay.
+The world getting darker when the State Meter is low and brighter when it goes back up.
+3–5 premade rooms that connect with doors, kind of like how Isaac does it.
+Sound effects for the telegraphs, hits, and State Meter changes.
+Could (stretch goals)
+5 or more enemy types plus a separate boss.
+A swarm enemy that uses flocking.
+Randomizing the obstacles inside the premade rooms.
+Extra game feel stuff like screen shake, particles, and controller rumble.
+What we cut first if we fall behind: the extra rooms and any enemy types past the first 2. We would put everything into one room and use that time on the signature encounter and the telegraphing, because I think that those are the core of what this prototype is supposed to test.
+
+
+
+
+
+
+
+
+
+Roles 
+Colin Skaarup: Player/ Player State
+Charlotte Peterson: NPC
+Ethan Matte: Enemies
+Joshua Mathieson: Procedural
+Aaron Archambault: Boss
+
+
+
+
+
+
+
+Top 3 Risks
+Risk 1: The off-axis enemies feel unfair (Design)
+I think that this is our biggest risk. The whole idea of enemies coming from places the player cannot go is interesting, but if the player keeps getting hit by things they could not see or react to, it is going to feel cheap rather than challenging.
+How we test it: the Alpha task for the off-axis enemy and the telegraph system. Once it is in, we will have at least 3 people outside our team play it and keep track of how many times they get hit by something they say they did not see coming.
+Fallback if it fails: we make the enemies only come in from fixed spots on the edges or through doorways, with a long wind-up that is the same every time (shadow, edge arrow, and sound). If it still feels unfair after that, the off-axis attacks would only push the player back and not do damage.
+Risk 2: Players never figure out the signature encounter (Design)
+The encounter only works if players actually figure out on their own that helping is what wins and attacking makes it worse. That being said, most people are used to games where you just hit the thing until it dies, so there is a real chance that people just keep attacking and get frustrated.
+How we test it: in the Beta playtest we will time how long it takes players to find the helpful action. Our goal is that most players figure it out within about 3 minutes.
+Fallback if it fails: we make the hints stronger, like having the NPCs react more clearly, making the enemy visibly shrink when you help someone, and having a civilian say a one-line hint after the player has attacked a certain number of times.
+Risk 3: Unity teamwork problems and WebGL build issues (Technical / Team)
+Unity scenes are really easy to break when more than one person edits them, and WebGL builds can break in ways that you do not notice until you actually upload them. If we wait until the end to deal with either of these, I feel that it could really hurt us.
+How we test it: one of our PoC tasks is getting a WebGL build up on itch.io in the first week, and then we rebuild it at every milestone so problems show up early. Each scene also has one owner, and everyone else works with prefabs.
+Fallback if it fails: everyone works in their own test scene, and the scene owner is the one who brings the changes into the main scene. If a feature breaks the WebGL build (like a lighting or post-processing effect), we swap it out for a simpler version.
+
+
+
+
+
+
+
+
+Team Agreement
+I would say that the main point of this is to make sure that we are all on the same page and that nobody ends up stuck doing everything or feeling left out. 
+Communication: We talk in our Google meet/chat that we have. We try to reply within 24 hours on school days, and if something is urgent or blocking someone, we say so in the channel.
+Weekly meeting: Monday and Thursdays during class time and possibly on Thursday outside of class time at like 7 if we need it, about 30 minutes. We go over what got done, what is next, and if anyone is stuck on something, and we update the board during the meeting.
+Branching and merging:
+main should always open and play without errors.
+Everyone works on their own branch for each issue, named like feature/<issue#>-short-name.
+Nothing gets merged into main without a pull request that one other team member has reviewed and approved.
+Only the owner of a scene edits that scene.
+The board: everyone moves their own cards. "In Progress" means you are actually working on it that week, and when your pull request is open, the card goes to "Review".
+When someone misses a task: if you know you are going to miss a deadline, you tell the group in the channel before the deadline and not after. If it happens once, we re-plan it together at the next meeting and help out where we can, because things happen and that is okay. If it keeps happening without anyone being told, we bring it up with the instructor.
