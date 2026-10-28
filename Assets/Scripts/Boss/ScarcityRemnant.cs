@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using UnityEditor.Animations;
 
 public enum RemnantState
 {
@@ -117,6 +116,8 @@ public class ScarcityRemnant : MonoBehaviour
     [SerializeField] private float transformTime = 2.5f;
 
     [Header("Colors")]
+    [Tooltip("tints the whole sprite by phase and turn this off when using the golem art so its own colors show (flashes still work)")]
+    [SerializeField] private bool tintBodyByPhase = true;
     [SerializeField] private Color dormantColor = new Color(0.35f, 0.35f, 0.35f);
     [SerializeField] private Color weakenedColor = new Color(0.75f, 0.65f, 0.45f);
     [SerializeField] private Color stableColor = new Color(0.8f, 0.45f, 0.15f);
@@ -134,6 +135,10 @@ public class ScarcityRemnant : MonoBehaviour
     public float MaxScarcity => maxScarcity;
     public float Scarcity01 => maxScarcity > 0f ? Scarcity / maxScarcity : 0f;
     public float CurrentScale => currentScale;
+    //for the BossSpriteAnimator: 0 at the start of the current state and 1 at the end (used to time the telegraph animations)
+    public float StateProgress01 => stateDuration > 0f ? Mathf.Clamp01(1f - stateTimer / stateDuration) : 1f;
+    public Transform Player => player;
+    public Vector2 LungeDirection => lungeDirection;
     public bool IsActive => State != RemnantState.Dormant && State != RemnantState.Transforming && State != RemnantState.Transformed;
     public event Action OnEncounterStarted;
     public event Action<float, float> OnScarcityChanged;
@@ -186,6 +191,16 @@ public class ScarcityRemnant : MonoBehaviour
         HideTelegraphs();
     }
 
+    private void OnEnable()
+    {
+        if (playerStats != null) playerStats.OnDied += HandlePlayerDied;
+    }
+
+    private void OnDisable()
+    {
+        if (playerStats != null) playerStats.OnDied -= HandlePlayerDied;
+    }
+
     private void Start()
     {
         OnScarcityChanged?.Invoke(Scarcity, maxScarcity);
@@ -206,7 +221,7 @@ public class ScarcityRemnant : MonoBehaviour
         stateTimer -= dt;
         attackCooldownTimer -= dt;
 
-        switch(State)
+        switch (State)
         {
             case RemnantState.Awakening:
                 if (stateTimer <= 0f) EnterState(RemnantState.Stalking);
@@ -574,6 +589,16 @@ public class ScarcityRemnant : MonoBehaviour
         else if (State == RemnantState.Transforming)
             baseColor = Color.Lerp(transformedColor, PhaseColor(), stateDuration > 0f ? stateTimer / stateDuration : 0f);
         else baseColor = PhaseColor();
+
+        //with the golem art keep the sprite's own colors and only add a light hint for dormant, ravenous and transformed
+        if (!tintBodyByPhase)
+        {
+            if (State == RemnantState.Dormant) baseColor = Color.Lerp(Color.white, dormantColor, 0.5f);
+            else if (State == RemnantState.Transformed) baseColor = Color.Lerp(Color.white, transformedColor, 0.6f);
+            else if (State == RemnantState.Transforming) baseColor = Color.Lerp(Color.white, transformedColor, 0.6f * StateProgress01);
+            else if (Phase == RemnantPhase.Ravenous) baseColor = Color.Lerp(Color.white, ravenousColor, 0.35f);
+            else baseColor = Color.white;
+        }
 
         //blink while winding up an attack so it's readable even without the ground marker.
         bool windingUp = State == RemnantState.TelegraphSlam || State == RemnantState.TelegraphLunge;
