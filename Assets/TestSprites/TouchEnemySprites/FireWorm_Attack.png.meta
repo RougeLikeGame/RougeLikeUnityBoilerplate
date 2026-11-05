@@ -1,0 +1,717 @@
+fileFormatVersion: 2
+guid: bfc0bc6f36b664a77948c70b4f26dfbd
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6132876937675493260
+    second: FireWorm_Attack_0
+  - first:
+      213: -827665396840974712
+    second: FireWorm_Attack_1
+  - first:
+      213: -7904232794221119749
+    second: FireWorm_Attack_2
+  - first:
+      213: -6930520171428505628
+    second: FireWorm_Attack_3
+  - first:
+      213: -6831746333518466286
+    second: FireWorm_Attack_4
+  - first:
+      213: 8306068489956629751
+    second: FireWorm_Attack_5
+  - first:
+      213: 7679106458006168440
+    second: FireWorm_Attack_6
+  - first:
+      213: 2077901788324498929
+    second: FireWorm_Attack_7
+  - first:
+      213: 4390070389534728479
+    second: FireWorm_Attack_8
+  - first:
+      213: 2659362876954603016
+    second: FireWorm_Attack_9
+  - first:
+      213: 3468527918658537713
+    second: FireWorm_Attack_10
+  - first:
+      213: 4772500022804871630
+    second: FireWorm_Attack_11
+  - first:
+      213: 1694999810842052334
+    second: FireWorm_Attack_12
+  - first:
+      213: -5552836119689005900
+    second: FireWorm_Attack_13
+  - first:
+      213: -3747646210439742783
+    second: FireWorm_Attack_14
+  - first:
+      213: 1601947732597728495
+    second: FireWorm_Attack_15
+  - first:
+      213: -1101173845126923643
+    second: FireWorm_Attack_16
+  - first:
+      213: 8979470316143106892
+    second: FireWorm_Attack_17
+  - first:
+      213: -929947940605577282
+    second: FireWorm_Attack_18
+  - first:
+      213: 3341698525814825862
+    second: FireWorm_Attack_19
+  - first:
+      213: -7363984791390640254
+    second: FireWorm_Attack_20
+  - first:
+      213: 2523647645940147897
+    second: FireWorm_Attack_21
+  - first:
+      213: -6466116590112594238
+    second: FireWorm_Attack_22
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: FireWorm_Attack_0
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 0
+        width: 52
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 470baa62be4a3eaa0800000000000000
+      internalID: -6132876937675493260
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_1
+      rect:
+        serializedVersion: 2
+        x: 219
+        y: 0
+        width: 48
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 886396ce4ba8384f0800000000000000
+      internalID: -827665396840974712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_2
+      rect:
+        serializedVersion: 2
+        x: 317
+        y: 0
+        width: 49
+        height: 50
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bf6f47ee6268e4290800000000000000
+      internalID: -7904232794221119749
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_3
+      rect:
+        serializedVersion: 2
+        x: 451
+        y: 46
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e71351af98d1df90800000000000000
+      internalID: -6930520171428505628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_4
+      rect:
+        serializedVersion: 2
+        x: 513
+        y: 0
+        width: 43
+        height: 47
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 213fd03e7e2c031a0800000000000000
+      internalID: -6831746333518466286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_5
+      rect:
+        serializedVersion: 2
+        x: 611
+        y: 0
+        width: 44
+        height: 55
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7fc1eefb845154370800000000000000
+      internalID: 8306068489956629751
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_6
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 0
+        width: 43
+        height: 46
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 873addd43aaa19a60800000000000000
+      internalID: 7679106458006168440
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_7
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 53
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1fd0b33daa036dc10800000000000000
+      internalID: 2077901788324498929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_8
+      rect:
+        serializedVersion: 2
+        x: 415
+        y: 0
+        width: 44
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f11ad2b72c9acec30800000000000000
+      internalID: 4390070389534728479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_9
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 34
+        width: 6
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80e6db95274f7e420800000000000000
+      internalID: 2659362876954603016
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_10
+      rect:
+        serializedVersion: 2
+        x: 807
+        y: 0
+        width: 42
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f8ca25d3cfa22030800000000000000
+      internalID: 3468527918658537713
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_11
+      rect:
+        serializedVersion: 2
+        x: 904
+        y: 0
+        width: 44
+        height: 42
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec9f3d52c735b3240800000000000000
+      internalID: 4772500022804871630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_12
+      rect:
+        serializedVersion: 2
+        x: 1032
+        y: 28
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee64893f859d58710800000000000000
+      internalID: 1694999810842052334
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_13
+      rect:
+        serializedVersion: 2
+        x: 1106
+        y: 0
+        width: 69
+        height: 45
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4b47af528fc50f2b0800000000000000
+      internalID: -5552836119689005900
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_14
+      rect:
+        serializedVersion: 2
+        x: 1203
+        y: 0
+        width: 70
+        height: 40
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca76e2a0afadfbc0800000000000000
+      internalID: -3747646210439742783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_15
+      rect:
+        serializedVersion: 2
+        x: 1302
+        y: 0
+        width: 52
+        height: 41
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fe4ea3ea9f24b3610800000000000000
+      internalID: 1601947732597728495
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_16
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 34
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 58a324dd838d7b0f0800000000000000
+      internalID: -1101173845126923643
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_17
+      rect:
+        serializedVersion: 2
+        x: 1352
+        y: 20
+        width: 19
+        height: 15
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4bdfd06dac7d9c70800000000000000
+      internalID: 8979470316143106892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_18
+      rect:
+        serializedVersion: 2
+        x: 1399
+        y: 0
+        width: 53
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eb7399c66492813f0800000000000000
+      internalID: -929947940605577282
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_19
+      rect:
+        serializedVersion: 2
+        x: 1446
+        y: 25
+        width: 23
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 683a3a9aa19106e20800000000000000
+      internalID: 3341698525814825862
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_20
+      rect:
+        serializedVersion: 2
+        x: 1456
+        y: 29
+        width: 6
+        height: 6
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28728c929deddc990800000000000000
+      internalID: -7363984791390640254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_21
+      rect:
+        serializedVersion: 2
+        x: 1498
+        y: 0
+        width: 68
+        height: 43
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9b66382c92cc50320800000000000000
+      internalID: 2523647645940147897
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FireWorm_Attack_22
+      rect:
+        serializedVersion: 2
+        x: 1007
+        y: 0
+        width: 53
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c62412683db346a0800000000000000
+      internalID: -6466116590112594238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      FireWorm_Attack_0: -6132876937675493260
+      FireWorm_Attack_1: -827665396840974712
+      FireWorm_Attack_10: 3468527918658537713
+      FireWorm_Attack_11: 4772500022804871630
+      FireWorm_Attack_12: 1694999810842052334
+      FireWorm_Attack_13: -5552836119689005900
+      FireWorm_Attack_14: -3747646210439742783
+      FireWorm_Attack_15: 1601947732597728495
+      FireWorm_Attack_16: -1101173845126923643
+      FireWorm_Attack_17: 8979470316143106892
+      FireWorm_Attack_18: -929947940605577282
+      FireWorm_Attack_19: 3341698525814825862
+      FireWorm_Attack_2: -7904232794221119749
+      FireWorm_Attack_20: -7363984791390640254
+      FireWorm_Attack_21: 2523647645940147897
+      FireWorm_Attack_22: -6466116590112594238
+      FireWorm_Attack_3: -6930520171428505628
+      FireWorm_Attack_4: -6831746333518466286
+      FireWorm_Attack_5: 8306068489956629751
+      FireWorm_Attack_6: 7679106458006168440
+      FireWorm_Attack_7: 2077901788324498929
+      FireWorm_Attack_8: 4390070389534728479
+      FireWorm_Attack_9: 2659362876954603016
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
