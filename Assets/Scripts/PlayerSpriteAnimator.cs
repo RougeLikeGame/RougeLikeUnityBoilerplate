@@ -8,6 +8,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
     {
         public Sprite[] idle;
         public Sprite[] walk;
+        public Sprite[] attack;
     }
 
     [Header("References")]
@@ -23,6 +24,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
     [Header("Speed (frames per second)")]
     [SerializeField] private float idleFps = 10f;
     [SerializeField] private float walkFps = 10f;
+    [SerializeField] private float attackFps = 10f;
     [Tooltip("Walk animation plays this many times faster while sprinting.")]
     [SerializeField] private float sprintFpsMultiplier = 1.5f;
 
@@ -49,7 +51,8 @@ public class PlayerSpriteAnimator : MonoBehaviour
         CurrentFacing = GetFacing(movement.FacingDirection);
 
         bool moving = movement.IsMoving;
-        Sprite[] frames = GetFrames(CurrentFacing, moving, out bool flipX);
+        bool attacking = movement.IsAttacking;
+        Sprite[] frames = GetFrames(CurrentFacing, moving, attacking, out bool flipX);
 
         //Restart the animation when switching to a different set of frames.
         if (frames != currentFrames)
@@ -59,7 +62,8 @@ public class PlayerSpriteAnimator : MonoBehaviour
             frameTimer = 0f;
         }
 
-        spriteRenderer.flipX = flipX;
+        if (GetFacing(movement.FacingDirection) != Facing.Left)
+            spriteRenderer.flipX = flipX;
 
         if (currentFrames == null || currentFrames.Length == 0) return;
 
@@ -85,7 +89,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
         return dir.y > 0f ? Facing.Up : Facing.Down;
     }
 
-    private Sprite[] GetFrames(Facing facing, bool moving, out bool flipX)
+    private Sprite[] GetFrames(Facing facing, bool moving, bool attacking, out bool flipX)
     {
         flipX = false;
         DirectionFrames set = facing switch
@@ -102,7 +106,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
             flipX = true;
         }
 
-        Sprite[] frames = moving ? set?.walk : set?.idle;
+        Sprite[] frames = attacking ? set?.attack : moving ? set?.walk : set?.idle;
 
         //If a walk or idle array is missing, use the other one so something still shows.
         if (frames == null || frames.Length == 0)
@@ -112,5 +116,5 @@ public class PlayerSpriteAnimator : MonoBehaviour
     }
 
     private static bool HasFrames(DirectionFrames d) =>
-        d != null && ((d.idle != null && d.idle.Length > 0) || (d.walk != null && d.walk.Length > 0));
+        d != null && ((d.idle != null && d.idle.Length > 0) || (d.walk != null && d.walk.Length > 0) || (d.attack != null && d.attack.Length > 0));
 }

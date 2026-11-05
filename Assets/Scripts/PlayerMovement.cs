@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 MoveInput { get; private set; }
     public Vector2 FacingDirection { get; private set; } = Vector2.down;
     public bool IsSprinting { get; private set; }
+    public bool IsAttacking { get; private set; }
     public bool IsMoving => MoveInput.sqrMagnitude > 0.01f;
     public Vector2 CurrentVelocity => GetVelocity();
 
@@ -45,6 +46,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private InputAction moveAction;
     private InputAction sprintAction;
+    private InputAction attackAction;
     private bool createdActionsInCode;
 
     private void Awake()
@@ -67,6 +69,7 @@ public class PlayerMovement : MonoBehaviour
             //Use the actions from the PlayerControls asset.
             moveAction = inputActions.FindAction("Player/Move", throwIfNotFound: true);
             sprintAction = inputActions.FindAction("Player/Sprint", throwIfNotFound: true);
+            attackAction = inputActions.FindAction("Player/Attack", throwIfNotFound: true);
             createdActionsInCode = false;
             return;
         }
@@ -92,18 +95,24 @@ public class PlayerMovement : MonoBehaviour
         sprintAction.AddBinding("<Keyboard>/leftShift");
         sprintAction.AddBinding("<Gamepad>/leftStickPress");
         sprintAction.AddBinding("<Gamepad>/leftTrigger");
+
+        //F
+        attackAction = new InputAction("Attack", InputActionType.Button);
+        attackAction.AddBinding("<Keyboard>/f");
     }
 
     private void OnEnable()
     {
         moveAction.Enable();
         sprintAction.Enable();
+        attackAction.Enable();
     }
 
     private void OnDisable()
     {
         moveAction.Disable();
         sprintAction.Disable();
+        attackAction.Disable();
     }
 
     private void OnDestroy()
@@ -113,6 +122,7 @@ public class PlayerMovement : MonoBehaviour
         {
             moveAction?.Dispose();
             sprintAction?.Dispose();
+            attackAction?.Dispose();
         }
     }
 
@@ -129,6 +139,8 @@ public class PlayerMovement : MonoBehaviour
         MoveInput = Vector2.ClampMagnitude(raw, 1f);
 
         IsSprinting = IsMoving && sprintAction.IsPressed();
+
+        IsAttacking = attackAction.IsPressed();
 
         if (IsMoving)
             FacingDirection = MoveInput.normalized;
