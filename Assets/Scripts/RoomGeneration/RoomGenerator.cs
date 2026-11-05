@@ -46,8 +46,10 @@ namespace Game.RoomGeneration
         /// <returns></returns>
         private IEnumerator Generate()
         {
-            Prims maze = new Prims(m_gridSize, m_seed);
-            List<Prims.Cell> path = maze.Generate(m_maxDepth);
+            Prims maze = new Prims(m_gridSize);
+            maze.Generate(m_maxDepth, m_seed);
+
+            List<Prims.Cell> path = maze.GetPath();
 
             Prims.Cell start = path.First(), end = path.Last();
 
