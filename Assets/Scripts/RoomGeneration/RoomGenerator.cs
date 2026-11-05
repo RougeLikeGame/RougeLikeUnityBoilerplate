@@ -1,6 +1,8 @@
+using NUnit.Framework;
 using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Game.RoomGeneration
 {
@@ -16,10 +18,16 @@ namespace Game.RoomGeneration
         private int m_gridSize;
 
         /// <summary>
-        /// How many rooms of the maze.
+        /// The maximum amount of rooms that can be generated
         /// </summary>
         [SerializeField]
         private int m_maxDepth;
+
+        /// <summary>
+        /// The seed of the room generation.
+        /// </summary>
+        [SerializeField]
+        private int m_seed;
 
         /// <summary>
         /// The prefab instantiated for each cell in the grid.
@@ -38,14 +46,18 @@ namespace Game.RoomGeneration
         /// <returns></returns>
         private IEnumerator Generate()
         {
-            Prims maze = new Prims(m_gridSize);
-            foreach (Prims.Cell cell in maze.Generate(m_maxDepth))
+            Prims maze = new Prims(m_gridSize, m_seed);
+            List<Prims.Cell> path = maze.Generate(m_maxDepth);
+
+            Prims.Cell start = path.First(), end = path.Last();
+
+            foreach (Prims.Cell cell in path)
             {
                 Room room = Instantiate(m_room, new(cell.Coordinate.x - m_gridSize / 2.0f, cell.Coordinate.y - m_gridSize / 2.0f), Quaternion.identity, transform);
 
-                room.VisualizeCell(cell);
+                room.VisualizeCell(cell, cell == end ? Room.RoomType.End : cell == start ? Room.RoomType.Start : Room.RoomType.Default);
 
-                yield return null;
+                yield return new WaitForSeconds(0.45f);
             }
         }
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Game.RoomGeneration
 {
     /// <summary>
-    /// Random Implemntation of Prim's Algorithm.
+    /// Random implementation of Prim's Algorithm.
     /// </summary>
     // Reference Source: https://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm
     public struct Prims
@@ -84,7 +84,10 @@ namespace Game.RoomGeneration
             /// </summary>
             /// <param name="direction"></param>
             /// <returns>The flipped direction.</returns>
-            public static Direction FlipDirection(Direction direction) => OppositeDirections[direction];
+            public static Direction FlipDirection(Direction direction)
+            {
+                return OppositeDirections[direction];
+            }
 
             /// <summary>
             /// Returns the direction from a to b.
@@ -109,12 +112,16 @@ namespace Game.RoomGeneration
         /// </summary>
         private int m_size;
 
+        private System.Random m_generator;
+
         /// <summary>
         /// Constructs of a specified size grid that Prim's algorithm will be used on.
         /// </summary>
         /// <param name="size"></param>
-        public Prims(int size)
+        /// <param name="seed"></param>
+        public Prims(int size, int seed = 0)
         {
+            m_generator = new(seed);
             m_grid = new Cell[size, size];
             m_size = size;
 
@@ -130,20 +137,19 @@ namespace Game.RoomGeneration
         /// <returns>All of the cells that were modified in the grid.</returns>
         public readonly List<Cell> Generate(int maxDepth) 
         {
-            List<Cell> visited = new();
-            List<Cell> frontier = new();
+            List<Cell> visited = new(), frontier = new();
 
-            MarkCell(m_grid[UnityEngine.Random.Range(0, m_size), UnityEngine.Random.Range(0, m_size)], frontier);
+            MarkCell(m_grid[m_generator.Next(0, m_size), m_generator.Next(0, m_size)], frontier, visited);
 
-            while (!frontier.IsEmpty() && visited.Count <= maxDepth) 
+            while (!frontier.IsEmpty()) 
             {
-                Cell current = frontier.PopRandomElement();
+                Cell current = frontier.PopRandomElement(m_generator);
 
                 List<Cell> neighbors = GetNeighborsOfCell(current);
 
                 if (!neighbors.IsEmpty())
                 {
-                    Cell neighbor = neighbors.GetRandomElement();
+                    Cell neighbor = neighbors.GetRandomElement(m_generator);
 
                     Cell.Direction direction = Cell.GetDirectionBetweenCells(current, neighbor);
 
@@ -151,10 +157,10 @@ namespace Game.RoomGeneration
                     neighbor.Walls[Cell.FlipDirection(direction)] = false;
                 }
 
-                MarkCell(current, frontier);
-
-                visited.Add(current);
+                MarkCell(current, frontier, visited);
             }
+
+            visited.Reverse();
 
             return visited;
         }
@@ -164,12 +170,15 @@ namespace Game.RoomGeneration
         /// </summary>
         /// <param name="cell"></param>
         /// <param name="frontier"></param>
-        private readonly void MarkCell(Cell cell, List<Cell> frontier)
+        /// <param name="visited"></param>
+        private readonly void MarkCell(Cell cell, List<Cell> frontier, List<Cell> visited)
         {
             cell.Visited = true;
 
             foreach (Cell neighbor in GetNeighborsOfCell(cell))
                 frontier.Add(neighbor);
+
+            visited.Add(cell);
         }
 
         /// <summary>

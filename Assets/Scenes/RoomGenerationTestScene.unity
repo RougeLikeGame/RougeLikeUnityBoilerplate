@@ -148,8 +148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2303169565f694bbbc80d006296321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.RoomGenerator
-  m_gridSize: 5
-  m_maxDepth: 25
+  m_gridSize: 3
+  m_maxDepth: 1000
+  m_seed: 198237
   m_room: {fileID: 3812389214330038681, guid: 74fdd36710dc1b44282dc52be7ecd909, type: 3}
 --- !u!4 &986405920
 Transform:
