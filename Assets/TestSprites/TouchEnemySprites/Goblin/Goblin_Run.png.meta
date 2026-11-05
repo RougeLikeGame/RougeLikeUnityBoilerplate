@@ -1,37 +1,31 @@
 fileFormatVersion: 2
-guid: e6960e14425f4431e8fac7c9101d83bc
+guid: eba0fccb972e54b4385d799d91db232e
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2928706376778319613
-    second: FireWorm_Death_0
+      213: -7067100048058867364
+    second: Goblin_Run_0
   - first:
-      213: 5649956939929948556
-    second: FireWorm_Death_1
+      213: -8781465562186494570
+    second: Goblin_Run_1
   - first:
-      213: 3337733546421230486
-    second: FireWorm_Death_2
+      213: -1169463751102481240
+    second: Goblin_Run_2
   - first:
-      213: -43834797638312149
-    second: FireWorm_Death_3
+      213: 2242382494881117327
+    second: Goblin_Run_3
   - first:
-      213: -3016147150055178068
-    second: FireWorm_Death_4
+      213: 1931021825172604147
+    second: Goblin_Run_4
   - first:
-      213: 30644882898970217
-    second: FireWorm_Death_5
+      213: -9143194657959688793
+    second: Goblin_Run_5
   - first:
-      213: -1720284506993289175
-    second: FireWorm_Death_6
+      213: -2551321506700363719
+    second: Goblin_Run_6
   - first:
-      213: 7803037429334044166
-    second: FireWorm_Death_7
-  - first:
-      213: 1724470576817536893
-    second: FireWorm_Death_8
-  - first:
-      213: -3972890532280566892
-    second: FireWorm_Death_9
+      213: 3218051686681118821
+    second: Goblin_Run_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -129,221 +123,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FireWorm_Death_0
+      name: Goblin_Run_0
       rect:
         serializedVersion: 2
-        x: 116
+        x: 0
         y: 0
-        width: 52
-        height: 41
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 309f4b831152b57d0800000000000000
-      internalID: -2928706376778319613
+      spriteID: c512e4b03fd9ced90800000000000000
+      internalID: -7067100048058867364
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_Death_1
+      name: Goblin_Run_1
       rect:
         serializedVersion: 2
-        x: 214
+        x: 94
         y: 0
-        width: 52
-        height: 38
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8117c0f6eda86e40800000000000000
-      internalID: 5649956939929948556
+      spriteID: 69d4c8ee897f12680800000000000000
+      internalID: -8781465562186494570
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_Death_2
+      name: Goblin_Run_2
       rect:
         serializedVersion: 2
-        x: 258
-        y: 37
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 69b9755f9f2025e20800000000000000
-      internalID: 3337733546421230486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Death_3
-      rect:
-        serializedVersion: 2
-        x: 312
+        x: 188
         y: 0
-        width: 51
-        height: 47
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b2f97f9db74446ff0800000000000000
-      internalID: -43834797638312149
+      spriteID: 8ac37d91aea35cfe0800000000000000
+      internalID: -1169463751102481240
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_Death_4
+      name: Goblin_Run_3
       rect:
         serializedVersion: 2
-        x: 449
-        y: 36
-        width: 14
-        height: 13
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: ca087a2b52e7426d0800000000000000
-      internalID: -3016147150055178068
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Death_5
-      rect:
-        serializedVersion: 2
-        x: 508
+        x: 282
         y: 0
-        width: 55
-        height: 50
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 966606fcb5fdc6000800000000000000
-      internalID: 30644882898970217
+      spriteID: f8471f99ffa8e1f10800000000000000
+      internalID: 2242382494881117327
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_Death_6
+      name: Goblin_Run_4
       rect:
         serializedVersion: 2
-        x: 607
+        x: 376
         y: 0
-        width: 62
-        height: 47
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 9289e08fa525028e0800000000000000
-      internalID: -1720284506993289175
+      spriteID: 3f480f67e1e5cca10800000000000000
+      internalID: 1931021825172604147
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_Death_7
+      name: Goblin_Run_5
       rect:
         serializedVersion: 2
-        x: 23
+        x: 470
         y: 0
-        width: 47
-        height: 33
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 60e68802335f94c60800000000000000
-      internalID: 7803037429334044166
+      spriteID: 7a5401cb6e8dc1180800000000000000
+      internalID: -9143194657959688793
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_Death_8
+      name: Goblin_Run_6
       rect:
         serializedVersion: 2
-        x: 410
+        x: 564
         y: 0
-        width: 53
-        height: 36
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d7f72dc5adc8ee710800000000000000
-      internalID: 1724470576817536893
+      spriteID: 9387f4d6b92e79cd0800000000000000
+      internalID: -2551321506700363719
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_Death_9
+      name: Goblin_Run_7
       rect:
         serializedVersion: 2
-        x: 705
+        x: 658
         y: 0
-        width: 61
-        height: 16
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 49b77e33c157dd8c0800000000000000
-      internalID: -3972890532280566892
+      spriteID: 568897585f0d8ac20800000000000000
+      internalID: 3218051686681118821
       vertices: []
       indices: 
       edges: []
@@ -352,7 +302,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 65c2b131714ff4884945ae65f8dcb416
     internalID: 0
     vertices: []
     indices: 
@@ -360,18 +310,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":94.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      FireWorm_Death_0: -2928706376778319613
-      FireWorm_Death_1: 5649956939929948556
-      FireWorm_Death_2: 3337733546421230486
-      FireWorm_Death_3: -43834797638312149
-      FireWorm_Death_4: -3016147150055178068
-      FireWorm_Death_5: 30644882898970217
-      FireWorm_Death_6: -1720284506993289175
-      FireWorm_Death_7: 7803037429334044166
-      FireWorm_Death_8: 1724470576817536893
-      FireWorm_Death_9: -3972890532280566892
+      Goblin_Run_0: -7067100048058867364
+      Goblin_Run_1: -8781465562186494570
+      Goblin_Run_2: -1169463751102481240
+      Goblin_Run_3: 2242382494881117327
+      Goblin_Run_4: 1931021825172604147
+      Goblin_Run_5: -9143194657959688793
+      Goblin_Run_6: -2551321506700363719
+      Goblin_Run_7: 3218051686681118821
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

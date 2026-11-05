@@ -171,12 +171,12 @@ TextureImporter:
       name: FireWorm_Attack_0
       rect:
         serializedVersion: 2
-        x: 120
+        x: 0
         y: 0
-        width: 52
-        height: 47
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -193,12 +193,12 @@ TextureImporter:
       name: FireWorm_Attack_1
       rect:
         serializedVersion: 2
-        x: 219
+        x: 98
         y: 0
-        width: 48
-        height: 47
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -215,12 +215,12 @@ TextureImporter:
       name: FireWorm_Attack_2
       rect:
         serializedVersion: 2
-        x: 317
+        x: 196
         y: 0
-        width: 49
-        height: 50
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -237,12 +237,12 @@ TextureImporter:
       name: FireWorm_Attack_3
       rect:
         serializedVersion: 2
-        x: 451
-        y: 46
-        width: 6
-        height: 6
+        x: 294
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -259,12 +259,12 @@ TextureImporter:
       name: FireWorm_Attack_4
       rect:
         serializedVersion: 2
-        x: 513
+        x: 392
         y: 0
-        width: 43
-        height: 47
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -281,12 +281,12 @@ TextureImporter:
       name: FireWorm_Attack_5
       rect:
         serializedVersion: 2
-        x: 611
+        x: 490
         y: 0
-        width: 44
-        height: 55
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -303,12 +303,12 @@ TextureImporter:
       name: FireWorm_Attack_6
       rect:
         serializedVersion: 2
-        x: 709
+        x: 588
         y: 0
-        width: 43
-        height: 46
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -325,12 +325,12 @@ TextureImporter:
       name: FireWorm_Attack_7
       rect:
         serializedVersion: 2
-        x: 22
+        x: 686
         y: 0
-        width: 53
-        height: 42
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -347,12 +347,12 @@ TextureImporter:
       name: FireWorm_Attack_8
       rect:
         serializedVersion: 2
-        x: 415
+        x: 784
         y: 0
-        width: 44
-        height: 35
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -369,12 +369,12 @@ TextureImporter:
       name: FireWorm_Attack_9
       rect:
         serializedVersion: 2
-        x: 449
-        y: 34
-        width: 6
-        height: 11
+        x: 882
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -391,12 +391,12 @@ TextureImporter:
       name: FireWorm_Attack_10
       rect:
         serializedVersion: 2
-        x: 807
+        x: 980
         y: 0
-        width: 42
-        height: 43
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -413,12 +413,12 @@ TextureImporter:
       name: FireWorm_Attack_11
       rect:
         serializedVersion: 2
-        x: 904
+        x: 1078
         y: 0
-        width: 44
-        height: 42
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -435,12 +435,12 @@ TextureImporter:
       name: FireWorm_Attack_12
       rect:
         serializedVersion: 2
-        x: 1032
-        y: 28
-        width: 13
-        height: 16
+        x: 1176
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -457,12 +457,12 @@ TextureImporter:
       name: FireWorm_Attack_13
       rect:
         serializedVersion: 2
-        x: 1106
+        x: 1274
         y: 0
-        width: 69
-        height: 45
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -479,12 +479,12 @@ TextureImporter:
       name: FireWorm_Attack_14
       rect:
         serializedVersion: 2
-        x: 1203
+        x: 1372
         y: 0
-        width: 70
-        height: 40
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -501,12 +501,12 @@ TextureImporter:
       name: FireWorm_Attack_15
       rect:
         serializedVersion: 2
-        x: 1302
+        x: 1470
         y: 0
-        width: 52
-        height: 41
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -519,165 +519,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: FireWorm_Attack_16
-      rect:
-        serializedVersion: 2
-        x: 1346
-        y: 34
-        width: 6
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 58a324dd838d7b0f0800000000000000
-      internalID: -1101173845126923643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Attack_17
-      rect:
-        serializedVersion: 2
-        x: 1352
-        y: 20
-        width: 19
-        height: 15
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c4bdfd06dac7d9c70800000000000000
-      internalID: 8979470316143106892
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Attack_18
-      rect:
-        serializedVersion: 2
-        x: 1399
-        y: 0
-        width: 53
-        height: 35
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: eb7399c66492813f0800000000000000
-      internalID: -929947940605577282
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Attack_19
-      rect:
-        serializedVersion: 2
-        x: 1446
-        y: 25
-        width: 23
-        height: 17
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 683a3a9aa19106e20800000000000000
-      internalID: 3341698525814825862
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Attack_20
-      rect:
-        serializedVersion: 2
-        x: 1456
-        y: 29
-        width: 6
-        height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 28728c929deddc990800000000000000
-      internalID: -7363984791390640254
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Attack_21
-      rect:
-        serializedVersion: 2
-        x: 1498
-        y: 0
-        width: 68
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9b66382c92cc50320800000000000000
-      internalID: 2523647645940147897
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Attack_22
-      rect:
-        serializedVersion: 2
-        x: 1007
-        y: 0
-        width: 53
-        height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 2c62412683db346a0800000000000000
-      internalID: -6466116590112594238
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 55de78d1359ec4897aaad18cb0c5e61e
     internalID: 0
     vertices: []
     indices: 
@@ -685,7 +531,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":98.0,"y":56.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       FireWorm_Attack_0: -6132876937675493260
       FireWorm_Attack_1: -827665396840974712
@@ -695,14 +543,7 @@ TextureImporter:
       FireWorm_Attack_13: -5552836119689005900
       FireWorm_Attack_14: -3747646210439742783
       FireWorm_Attack_15: 1601947732597728495
-      FireWorm_Attack_16: -1101173845126923643
-      FireWorm_Attack_17: 8979470316143106892
-      FireWorm_Attack_18: -929947940605577282
-      FireWorm_Attack_19: 3341698525814825862
       FireWorm_Attack_2: -7904232794221119749
-      FireWorm_Attack_20: -7363984791390640254
-      FireWorm_Attack_21: 2523647645940147897
-      FireWorm_Attack_22: -6466116590112594238
       FireWorm_Attack_3: -6930520171428505628
       FireWorm_Attack_4: -6831746333518466286
       FireWorm_Attack_5: 8306068489956629751

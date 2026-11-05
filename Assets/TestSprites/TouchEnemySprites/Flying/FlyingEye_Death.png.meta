@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: b04b36e99b32d46cca4259568e2a482b
+guid: 83343622485364d9584ab93c1a0ac2df
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 9130647759989690307
-    second: Goblin_Idle_0
+      213: 4289207245061413810
+    second: FlyingEye_Death_0
   - first:
-      213: 1368956883174936208
-    second: Goblin_Idle_1
+      213: -1801464774300581872
+    second: FlyingEye_Death_1
   - first:
-      213: 6361711507835937641
-    second: Goblin_Idle_2
+      213: -3772825211158935100
+    second: FlyingEye_Death_2
   - first:
-      213: 6260978701604189543
-    second: Goblin_Idle_3
+      213: 3975846311839629370
+    second: FlyingEye_Death_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,89 +111,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Goblin_Idle_0
+      name: FlyingEye_Death_0
       rect:
         serializedVersion: 2
-        x: 30
+        x: 0
         y: 0
-        width: 35
-        height: 37
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 3cfc66fe2c396be70800000000000000
-      internalID: 9130647759989690307
+      spriteID: 2bbdae1a343568b30800000000000000
+      internalID: 4289207245061413810
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goblin_Idle_1
+      name: FlyingEye_Death_1
+      rect:
+        serializedVersion: 2
+        x: 62
+        y: 0
+        width: 62
+        height: 43
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0104f641559eff6e0800000000000000
+      internalID: -1801464774300581872
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FlyingEye_Death_2
       rect:
         serializedVersion: 2
         x: 124
         y: 0
-        width: 35
-        height: 36
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09ec77e38038ff210800000000000000
-      internalID: 1368956883174936208
+      spriteID: 4c9cb31b57b34abc0800000000000000
+      internalID: -3772825211158935100
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goblin_Idle_2
+      name: FlyingEye_Death_3
       rect:
         serializedVersion: 2
-        x: 218
+        x: 186
         y: 0
-        width: 35
-        height: 35
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 963631c19e6594850800000000000000
-      internalID: 6361711507835937641
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Goblin_Idle_3
-      rect:
-        serializedVersion: 2
-        x: 312
-        y: 0
-        width: 35
-        height: 33
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 765776ff4f673e650800000000000000
-      internalID: 6260978701604189543
+      spriteID: a308fbad72b0d2730800000000000000
+      internalID: 3975846311839629370
       vertices: []
       indices: 
       edges: []
@@ -202,7 +202,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 074d8c6bc061f42598b8c2af9249564a
     internalID: 0
     vertices: []
     indices: 
@@ -210,12 +210,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":62.0,"y":43.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Goblin_Idle_0: 9130647759989690307
-      Goblin_Idle_1: 1368956883174936208
-      Goblin_Idle_2: 6361711507835937641
-      Goblin_Idle_3: 6260978701604189543
+      FlyingEye_Death_0: 4289207245061413810
+      FlyingEye_Death_1: -1801464774300581872
+      FlyingEye_Death_2: -3772825211158935100
+      FlyingEye_Death_3: 3975846311839629370
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

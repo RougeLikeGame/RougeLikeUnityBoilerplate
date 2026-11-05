@@ -1,31 +1,31 @@
 fileFormatVersion: 2
-guid: f3d6fe5f47f5a4780a5d7c0f179fd51c
+guid: 4b91eff8e02434db8a714c59140179c8
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8967350202387847116
-    second: FlyingEye_Attack_0
+      213: -7694980135540353742
+    second: FlyingEye_Flight_0
   - first:
-      213: -5811959717703277371
-    second: FlyingEye_Attack_1
+      213: -6412890952833759284
+    second: FlyingEye_Flight_1
   - first:
-      213: -2184626033411338417
-    second: FlyingEye_Attack_2
+      213: -8192887475889419395
+    second: FlyingEye_Flight_2
   - first:
-      213: -3211256486886851324
-    second: FlyingEye_Attack_3
+      213: -5328948516227974504
+    second: FlyingEye_Flight_3
   - first:
-      213: 2706038056799174122
-    second: FlyingEye_Attack_4
+      213: -8011005700979391510
+    second: FlyingEye_Flight_4
   - first:
-      213: 2858908823928225873
-    second: FlyingEye_Attack_5
+      213: -355631281138222818
+    second: FlyingEye_Flight_5
   - first:
-      213: 8733302242157963834
-    second: FlyingEye_Attack_6
+      213: 1822195692344957818
+    second: FlyingEye_Flight_6
   - first:
-      213: -8045205052928848066
-    second: FlyingEye_Attack_7
+      213: 7747385166789356233
+    second: FlyingEye_Flight_7
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -123,177 +123,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FlyingEye_Attack_0
+      name: FlyingEye_Flight_0
       rect:
         serializedVersion: 2
-        x: 10
-        y: 8
-        width: 43
-        height: 33
+        x: 0
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 438252280829d8380800000000000000
-      internalID: -8967350202387847116
+      spriteID: 2351e632650f53590800000000000000
+      internalID: -7694980135540353742
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlyingEye_Attack_1
+      name: FlyingEye_Flight_1
       rect:
         serializedVersion: 2
-        x: 72
-        y: 8
-        width: 43
-        height: 31
+        x: 62
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5c4aa690e65c75fa0800000000000000
-      internalID: -5811959717703277371
+      spriteID: cc70705c7a5d007a0800000000000000
+      internalID: -6412890952833759284
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlyingEye_Attack_2
+      name: FlyingEye_Flight_2
       rect:
         serializedVersion: 2
-        x: 130
-        y: 12
-        width: 43
-        height: 27
+        x: 124
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: f4f427f7236aea1e0800000000000000
-      internalID: -2184626033411338417
+      spriteID: d7b4dda9f340d4e80800000000000000
+      internalID: -8192887475889419395
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlyingEye_Attack_3
+      name: FlyingEye_Flight_3
       rect:
         serializedVersion: 2
-        x: 192
-        y: 12
-        width: 43
-        height: 27
+        x: 186
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 40db0783d335f63d0800000000000000
-      internalID: -3211256486886851324
+      spriteID: 89af2e7fe85cb06b0800000000000000
+      internalID: -5328948516227974504
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlyingEye_Attack_4
+      name: FlyingEye_Flight_4
       rect:
         serializedVersion: 2
-        x: 254
-        y: 13
-        width: 43
-        height: 26
+        x: 248
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: aedf3348647cd8520800000000000000
-      internalID: 2706038056799174122
+      spriteID: ae38e7352c033d090800000000000000
+      internalID: -8011005700979391510
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlyingEye_Attack_5
+      name: FlyingEye_Flight_5
       rect:
         serializedVersion: 2
-        x: 318
-        y: 12
-        width: 39
-        height: 28
+        x: 310
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 150c87f9d62eca720800000000000000
-      internalID: 2858908823928225873
+      spriteID: e193db8eb3b801bf0800000000000000
+      internalID: -355631281138222818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlyingEye_Attack_6
+      name: FlyingEye_Flight_6
       rect:
         serializedVersion: 2
-        x: 386
-        y: 9
-        width: 37
-        height: 26
+        x: 372
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a3aa2f34e1ce23970800000000000000
-      internalID: 8733302242157963834
+      spriteID: a7bd779e35db94910800000000000000
+      internalID: 1822195692344957818
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FlyingEye_Attack_7
+      name: FlyingEye_Flight_7
       rect:
         serializedVersion: 2
-        x: 449
-        y: 9
-        width: 35
-        height: 26
+        x: 434
+        y: 0
+        width: 62
+        height: 43
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e3f8ff231a0b95090800000000000000
-      internalID: -8045205052928848066
+      spriteID: 9ca2c9403cd348b60800000000000000
+      internalID: 7747385166789356233
       vertices: []
       indices: 
       edges: []
@@ -302,7 +302,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 3a28bff87b2224310a30121885aaf575
     internalID: 0
     vertices: []
     indices: 
@@ -310,16 +310,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":62.0,"y":43.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      FlyingEye_Attack_0: -8967350202387847116
-      FlyingEye_Attack_1: -5811959717703277371
-      FlyingEye_Attack_2: -2184626033411338417
-      FlyingEye_Attack_3: -3211256486886851324
-      FlyingEye_Attack_4: 2706038056799174122
-      FlyingEye_Attack_5: 2858908823928225873
-      FlyingEye_Attack_6: 8733302242157963834
-      FlyingEye_Attack_7: -8045205052928848066
+      FlyingEye_Flight_0: -7694980135540353742
+      FlyingEye_Flight_1: -6412890952833759284
+      FlyingEye_Flight_2: -8192887475889419395
+      FlyingEye_Flight_3: -5328948516227974504
+      FlyingEye_Flight_4: -8011005700979391510
+      FlyingEye_Flight_5: -355631281138222818
+      FlyingEye_Flight_6: 1822195692344957818
+      FlyingEye_Flight_7: 7747385166789356233
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,19 +1,25 @@
 fileFormatVersion: 2
-guid: bb7f7c78c9fcf4456a5e71d3fad566d4
+guid: 93135c89d814b4425a6269589e826cd4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -3124397096073141363
-    second: Goblin_Death_0
+      213: -7275658823661132849
+    second: Goblin_TakeHit_0
   - first:
-      213: -749724090643427790
-    second: Goblin_Death_1
+      213: -9006937548550932882
+    second: Goblin_TakeHit_1
   - first:
-      213: 9016763863700688465
-    second: Goblin_Death_2
+      213: 8194305851571731775
+    second: Goblin_TakeHit_2
   - first:
-      213: 3317473751703856157
-    second: Goblin_Death_3
+      213: 6043021116784969087
+    second: Goblin_TakeHit_3
+  - first:
+      213: 5773834155654536133
+    second: Goblin_TakeHit_4
+  - first:
+      213: -7590225735415396835
+    second: Goblin_TakeHit_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,89 +117,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Goblin_Death_0
+      name: Goblin_TakeHit_0
       rect:
         serializedVersion: 2
-        x: 29
-        y: 15
-        width: 45
-        height: 23
+        x: 0
+        y: 0
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d836c471569e3a4d0800000000000000
-      internalID: -3124397096073141363
+      spriteID: fc3edb419daa70b90800000000000000
+      internalID: -7275658823661132849
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goblin_Death_1
+      name: Goblin_TakeHit_1
       rect:
         serializedVersion: 2
-        x: 126
+        x: 94
         y: 0
-        width: 37
-        height: 40
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 23e45a969e17895f0800000000000000
-      internalID: -749724090643427790
+      spriteID: e667e78350ee00380800000000000000
+      internalID: -9006937548550932882
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goblin_Death_2
+      name: Goblin_TakeHit_2
       rect:
         serializedVersion: 2
-        x: 218
+        x: 188
         y: 0
-        width: 39
-        height: 24
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 15e457f06faf12d70800000000000000
-      internalID: 9016763863700688465
+      spriteID: f3d76d7b1c508b170800000000000000
+      internalID: 8194305851571731775
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Goblin_Death_3
+      name: Goblin_TakeHit_3
       rect:
         serializedVersion: 2
-        x: 312
+        x: 282
         y: 0
-        width: 53
-        height: 16
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d14adf9ecc80a0e20800000000000000
-      internalID: 3317473751703856157
+      spriteID: f75072c30bf1dd350800000000000000
+      internalID: 6043021116784969087
       vertices: []
       indices: 
       edges: []
@@ -202,7 +208,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 71e55a79a5ac84215a66e8804a09023f
     internalID: 0
     vertices: []
     indices: 
@@ -210,12 +216,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":94.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Goblin_Death_0: -3124397096073141363
-      Goblin_Death_1: -749724090643427790
-      Goblin_Death_2: 9016763863700688465
-      Goblin_Death_3: 3317473751703856157
+      Goblin_TakeHit_0: -7275658823661132849
+      Goblin_TakeHit_1: -9006937548550932882
+      Goblin_TakeHit_2: 8194305851571731775
+      Goblin_TakeHit_3: 6043021116784969087
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

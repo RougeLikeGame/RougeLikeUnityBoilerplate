@@ -1,19 +1,19 @@
 fileFormatVersion: 2
-guid: c27dbc2ad44964f6e9c07a2efda61448
+guid: bb7f7c78c9fcf4456a5e71d3fad566d4
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 7232725057636993676
-    second: FireWorm_TakeHit_0
+      213: -3124397096073141363
+    second: Goblin_Death_0
   - first:
-      213: 8640653686308262567
-    second: FireWorm_TakeHit_1
+      213: -749724090643427790
+    second: Goblin_Death_1
   - first:
-      213: 4474510674387423618
-    second: FireWorm_TakeHit_2
+      213: 9016763863700688465
+    second: Goblin_Death_2
   - first:
-      213: -3011147801384949126
-    second: FireWorm_TakeHit_3
+      213: 3317473751703856157
+    second: Goblin_Death_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -111,89 +111,89 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: FireWorm_TakeHit_0
+      name: Goblin_Death_0
       rect:
         serializedVersion: 2
-        x: 27
+        x: 0
         y: 0
-        width: 42
-        height: 43
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: c8a058a8e1dcf5460800000000000000
-      internalID: 7232725057636993676
+      spriteID: d836c471569e3a4d0800000000000000
+      internalID: -3124397096073141363
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_TakeHit_1
+      name: Goblin_Death_1
       rect:
         serializedVersion: 2
-        x: 122
+        x: 94
         y: 0
-        width: 45
-        height: 33
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 7a2d29f5fb4c9e770800000000000000
-      internalID: 8640653686308262567
+      spriteID: 23e45a969e17895f0800000000000000
+      internalID: -749724090643427790
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_TakeHit_2
+      name: Goblin_Death_2
       rect:
         serializedVersion: 2
-        x: 159
-        y: 33
-        width: 9
-        height: 12
+        x: 188
+        y: 0
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 2815e8a50c7a81e30800000000000000
-      internalID: 4474510674387423618
+      spriteID: 15e457f06faf12d70800000000000000
+      internalID: 9016763863700688465
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: FireWorm_TakeHit_3
+      name: Goblin_Death_3
       rect:
         serializedVersion: 2
-        x: 219
+        x: 282
         y: 0
-        width: 47
-        height: 46
+        width: 94
+        height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: a7a604447014636d0800000000000000
-      internalID: -3011147801384949126
+      spriteID: d14adf9ecc80a0e20800000000000000
+      internalID: 3317473751703856157
       vertices: []
       indices: 
       edges: []
@@ -202,7 +202,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 48938ff6363c945fea39529757030342
     internalID: 0
     vertices: []
     indices: 
@@ -210,12 +210,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":94.0,"y":48.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      FireWorm_TakeHit_0: 7232725057636993676
-      FireWorm_TakeHit_1: 8640653686308262567
-      FireWorm_TakeHit_2: 4474510674387423618
-      FireWorm_TakeHit_3: -3011147801384949126
+      Goblin_Death_0: -3124397096073141363
+      Goblin_Death_1: -749724090643427790
+      Goblin_Death_2: 9016763863700688465
+      Goblin_Death_3: 3317473751703856157
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

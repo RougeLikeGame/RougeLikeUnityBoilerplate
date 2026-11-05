@@ -147,12 +147,12 @@ TextureImporter:
       name: FireWorm_Walk_0
       rect:
         serializedVersion: 2
-        x: 22
+        x: 0
         y: 0
-        width: 51
-        height: 40
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -169,12 +169,12 @@ TextureImporter:
       name: FireWorm_Walk_1
       rect:
         serializedVersion: 2
-        x: 148
-        y: 35
-        width: 8
-        height: 7
+        x: 98
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -191,12 +191,12 @@ TextureImporter:
       name: FireWorm_Walk_2
       rect:
         serializedVersion: 2
-        x: 154
-        y: 30
-        width: 8
-        height: 8
+        x: 196
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -213,12 +213,12 @@ TextureImporter:
       name: FireWorm_Walk_3
       rect:
         serializedVersion: 2
-        x: 243
-        y: 38
-        width: 6
-        height: 6
+        x: 294
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -235,12 +235,12 @@ TextureImporter:
       name: FireWorm_Walk_4
       rect:
         serializedVersion: 2
-        x: 249
-        y: 33
-        width: 6
-        height: 6
+        x: 392
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -257,12 +257,12 @@ TextureImporter:
       name: FireWorm_Walk_5
       rect:
         serializedVersion: 2
-        x: 414
+        x: 490
         y: 0
-        width: 53
-        height: 40
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -279,12 +279,12 @@ TextureImporter:
       name: FireWorm_Walk_6
       rect:
         serializedVersion: 2
-        x: 439
-        y: 37
-        width: 9
-        height: 7
+        x: 588
+        y: 0
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -301,12 +301,12 @@ TextureImporter:
       name: FireWorm_Walk_7
       rect:
         serializedVersion: 2
-        x: 513
+        x: 686
         y: 0
-        width: 48
-        height: 43
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -323,12 +323,12 @@ TextureImporter:
       name: FireWorm_Walk_8
       rect:
         serializedVersion: 2
-        x: 611
+        x: 784
         y: 0
-        width: 46
-        height: 41
+        width: 98
+        height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -341,143 +341,11 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: FireWorm_Walk_9
-      rect:
-        serializedVersion: 2
-        x: 709
-        y: 0
-        width: 48
-        height: 42
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d464e5a5eae9efd30800000000000000
-      internalID: 4467182352075736653
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Walk_10
-      rect:
-        serializedVersion: 2
-        x: 806
-        y: 0
-        width: 51
-        height: 43
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 33f1dd4d5e4930190800000000000000
-      internalID: -7997384798440186061
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Walk_11
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 0
-        width: 53
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: c94d0fa148ecf9770800000000000000
-      internalID: 8619835278593414300
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Walk_12
-      rect:
-        serializedVersion: 2
-        x: 218
-        y: 0
-        width: 54
-        height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: b7a04de2b5556e4e0800000000000000
-      internalID: -1952779538302498181
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Walk_13
-      rect:
-        serializedVersion: 2
-        x: 316
-        y: 0
-        width: 54
-        height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 7d96fc2f59d51b0e0800000000000000
-      internalID: -2255919039730718249
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: FireWorm_Walk_14
-      rect:
-        serializedVersion: 2
-        x: 348
-        y: 27
-        width: 15
-        height: 9
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 85b2f1de0b830cb10800000000000000
-      internalID: 1999660567096142680
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
     outline: []
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 84cc941e2258a4813bbb1f2c4c218ced
     internalID: 0
     vertices: []
     indices: 
@@ -485,15 +353,12 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":98.0,"y":56.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       FireWorm_Walk_0: -4015601976749506075
       FireWorm_Walk_1: 4076881973883665238
-      FireWorm_Walk_10: -7997384798440186061
-      FireWorm_Walk_11: 8619835278593414300
-      FireWorm_Walk_12: -1952779538302498181
-      FireWorm_Walk_13: -2255919039730718249
-      FireWorm_Walk_14: 1999660567096142680
       FireWorm_Walk_2: -3760623475956708396
       FireWorm_Walk_3: 2077694200428944592
       FireWorm_Walk_4: -5389874419689799845
@@ -501,7 +366,6 @@ TextureImporter:
       FireWorm_Walk_6: -6495915198285718943
       FireWorm_Walk_7: -443677731764937020
       FireWorm_Walk_8: -4384654124254100795
-      FireWorm_Walk_9: 4467182352075736653
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
