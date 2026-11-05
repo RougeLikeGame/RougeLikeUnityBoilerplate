@@ -35,8 +35,15 @@ namespace Game.RoomGeneration
         [SerializeField]
         private Room m_room;
 
-        private void Start()
+        /// <summary>
+        /// Clears old rooms and regenerates new ones.
+        /// </summary>
+        public void RegenerateRooms()
         {
+            foreach (Transform child in transform)
+                Destroy(child.gameObject);
+
+            StopAllCoroutines();
             StartCoroutine(nameof(Generate));
         }
 
@@ -47,10 +54,8 @@ namespace Game.RoomGeneration
         private IEnumerator Generate()
         {
             Prims maze = new Prims(m_gridSize);
-            maze.Generate(m_maxDepth, m_seed);
 
-            List<Prims.Cell> path = maze.GetPath();
-
+            List<Prims.Cell> path = maze.Generate(m_maxDepth, m_seed);
             Prims.Cell start = path.First(), end = path.Last();
 
             foreach (Prims.Cell cell in path)
@@ -59,7 +64,7 @@ namespace Game.RoomGeneration
 
                 room.VisualizeCell(cell, cell == end ? Room.RoomType.End : cell == start ? Room.RoomType.Start : Room.RoomType.Default);
 
-                yield return new WaitForSeconds(0.45f);
+                yield return new WaitForSeconds(0.20f);
             }
         }
     }
