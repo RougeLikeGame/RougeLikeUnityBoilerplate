@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     //Set by the enemy when it can't be hit (underground, in the sky)
     public bool Invulnerable { get; set; }
 
-    public event Action<float> OnHurt;   //damage taken
+    public event Action<float> OnHurt; //damage taken
     public event Action OnDied;
 
     //Every living enemy, so debug tools (and later, room-clear checks) can find them.
