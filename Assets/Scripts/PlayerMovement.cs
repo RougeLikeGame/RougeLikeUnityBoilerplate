@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float deceleration = 35f;
     [Tooltip("Stick values below this are ignored (prevents drift on controllers).")]
     [SerializeField, Range(0f, 0.5f)] private float stickDeadzone = 0.2f;
+    [Tooltip("How long the player has to wait between each attack")]
+    [SerializeField, Range(0f, 1.0f)] private float attackCooldown = 0.7f;
 
     [Header("Optional")]
     [Tooltip("Sprite to flip left/right based on movement. Leave empty to skip.")]
@@ -40,24 +42,35 @@ public class PlayerMovement : MonoBehaviour
         set => canMove = value;
     }
 
+    public float attackDuration;
+
     //Multiplier other systems can change e.g. slow when State Meter is low, or a hidden enemy is "attached"
     [HideInInspector] public float speedMultiplier = 1f;
 
+    private ScarcityRemnant boss;
+    private PlayerSpriteAnimator animator;
     private Rigidbody2D rb;
+    private BoxCollider2D sword;
     private InputAction moveAction;
     private InputAction sprintAction;
     private InputAction attackAction;
     private bool createdActionsInCode;
+    private float attackTimer = 0;
 
     private void Awake()
     {
+        boss = FindAnyObjectByType<ScarcityRemnant>();
+        animator = GetComponent<PlayerSpriteAnimator>();
         rb = GetComponent<Rigidbody2D>();
+        sword = GetComponentInChildren<BoxCollider2D>();
 
         //Top-down setup: no gravity, no spinning when bumping walls.
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
         rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
+
+        attackTimer = attackCooldown;
 
         SetUpInput();
     }
@@ -106,6 +119,7 @@ public class PlayerMovement : MonoBehaviour
         moveAction.Enable();
         sprintAction.Enable();
         attackAction.Enable();
+        sword.enabled = false;
     }
 
     private void OnDisable()
@@ -131,6 +145,10 @@ public class PlayerMovement : MonoBehaviour
         //Read input every frame.
         Vector2 raw = canMove ? moveAction.ReadValue<Vector2>() : Vector2.zero;
 
+        attackTimer += Time.deltaTime;
+
+        bool canAttack = attackTimer >= attackCooldown;
+
         if (raw.magnitude < stickDeadzone)
             raw = Vector2.zero;
 
@@ -140,10 +158,28 @@ public class PlayerMovement : MonoBehaviour
 
         IsSprinting = IsMoving && sprintAction.IsPressed();
 
-        IsAttacking = attackAction.IsPressed();
+        if (attackAction.IsPressed() && canAttack)
+        {
+            IsAttacking = true;
+            attackTimer = 0f;
+        }
 
         if (IsMoving)
             FacingDirection = MoveInput.normalized;
+        if (IsAttacking)
+        {
+            sword.enabled = true;
+            if (attackTimer >= attackDuration)
+            {
+                attackTimer = 0;
+                IsAttacking = false;
+                sword.enabled = false;
+            }
+        }
+
+        sword.transform.Rotate(0, 0, Mathf.Sin((int)animator.CurrentFacing * Mathf.PI));
+
+        //sword.transform.rotation += Quaternion.Euler(0f, 0f, Mathf.Sin((int)animator.CurrentFacing * Mathf.PI) * 90);
 
         //Flip sprite left/right.
         if (spriteRenderer != null && Mathf.Abs(MoveInput.x) > 0.01f)
@@ -186,4 +222,10 @@ public class PlayerMovement : MonoBehaviour
         rb.velocity = v;
 #endif
     }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        boss.ReceiveAggression();
+    }
+
 }

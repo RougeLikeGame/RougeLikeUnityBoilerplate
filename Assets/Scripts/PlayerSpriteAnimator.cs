@@ -28,7 +28,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
     [Tooltip("Walk animation plays this many times faster while sprinting.")]
     [SerializeField] private float sprintFpsMultiplier = 1.5f;
 
-    public enum Facing { Down, Up, Left, Right }
+    public enum Facing { Down, Right, Up, Left }
     public Facing CurrentFacing { get; private set; } = Facing.Down;
 
     private PlayerMovement movement;
@@ -41,6 +41,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         if (spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
+        movement.attackDuration =  GetFrames(Facing.Down, false, true, out bool flipX).Length/ attackFps;
     }
 
     //LateUpdate runs after PlayerMovement.Update, so facing is already up to date.
@@ -67,7 +68,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
 
         if (currentFrames == null || currentFrames.Length == 0) return;
 
-        float fps = moving ? walkFps : idleFps;
+        float fps = attacking ? attackFps : moving ? walkFps : idleFps;
         if (movement.IsSprinting) fps *= sprintFpsMultiplier;
 
         frameTimer += Time.deltaTime;

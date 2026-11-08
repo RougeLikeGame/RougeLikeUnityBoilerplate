@@ -851,8 +851,10 @@ MonoBehaviour:
   acceleration: 50
   deceleration: 35
   stickDeadzone: 0.2
+  attackCooldown: 1
   spriteRenderer: {fileID: 495216897}
   canMove: 1
+  attackDuration: 0
   speedMultiplier: 1
 --- !u!70 &495216895
 CapsuleCollider2D:
@@ -1185,7 +1187,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
