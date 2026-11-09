@@ -7,33 +7,13 @@ namespace Game.RoomGeneration
     /// <summary>
     /// Used by the RoomGenerator to visualize a room.
     /// </summary>
-    public sealed class Room : MonoBehaviour
+    public sealed class RoomObject : MonoBehaviour
     {
-        /// <summary>
-        /// The color representation of each type.
-        /// </summary>
-        private static readonly Dictionary<RoomType, Color> RoomTypeColors = new()
-        {
-            [RoomType.Default] = Color.white,
-            [RoomType.Start] = Color.yellow,
-            [RoomType.End] = Color.red
-        };
-
-        /// <summary>
-        /// Each type of room used for visualization.
-        /// </summary>
-        public enum RoomType
-        {
-            Default,
-            Start,
-            End
-        }
-
         /// <summary>
         /// The walls of the room.
         /// </summary>
         [SerializeField]
-        private Dictionary<Prims.Cell.Direction, SpriteRenderer> m_walls;
+        private Dictionary<Prims.Cell.WallDirection, SpriteRenderer> m_walls;
 
         /// <summary>
         /// The sprite of the room.
@@ -46,7 +26,7 @@ namespace Game.RoomGeneration
         /// <param name="cell"></param>
         public void Initialize(Prims.Cell cell)
         {
-            foreach (KeyValuePair<Prims.Cell.Direction, bool> pair in cell.Walls)
+            foreach (KeyValuePair<Prims.Cell.WallDirection, bool> pair in cell.Walls)
             {
                 SpriteRenderer sprite;
 

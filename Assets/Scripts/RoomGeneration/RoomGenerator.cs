@@ -14,6 +14,7 @@ namespace Game.RoomGeneration
         /// <summary>
         /// The size of the grid.
         /// </summary>
+        [Header("Settings")]
         [SerializeField]
         private int m_gridSize;
 
@@ -28,12 +29,13 @@ namespace Game.RoomGeneration
         /// </summary>
         [SerializeField]
         private int m_seed;
-
+        
         /// <summary>
-        /// The prefab instantiated for each cell in the grid.
+        /// The available rooms that can be randomly chosen and generated.
         /// </summary>
+        [Header("Generation")]
         [SerializeField]
-        private Room m_room;
+        private List<RoomData> m_availableRooms;
 
         /// <summary>
         /// Clears old rooms and regenerates new ones.
@@ -53,12 +55,18 @@ namespace Game.RoomGeneration
         /// <returns></returns>
         private IEnumerator Generate()
         {
+            uint weightSum = m_availableRooms.GetWeightSum();
+            System.Random generator = new(m_seed);
             Prims maze = new Prims(m_gridSize);
-            maze.Generate(m_maxDepth, m_seed);
+            maze.Generate(m_maxDepth, generator);
 
             foreach (Prims.Cell cell in maze.Grid)
             {
-                Room room = Instantiate(m_room, new(cell.Coordinate.x - m_gridSize / 2.0f, cell.Coordinate.y - m_gridSize / 2.0f), Quaternion.identity, transform);
+                if (cell.State != Prims.Cell.CellState.Visited)
+                    continue;
+
+                RoomData randomRoom = m_availableRooms.GetWeightedElement(generator, weightSum);
+                RoomObject room = Instantiate(randomRoom.RoomObject, new(cell.Coordinate.x - m_gridSize / 2.0f, cell.Coordinate.y - m_gridSize / 2.0f), Quaternion.identity, transform);
 
                 room.Initialize(cell);
 

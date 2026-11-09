@@ -8,7 +8,7 @@ namespace Game.RoomGeneration
     /// <summary>
     /// Random implementation of Prim's Algorithm.
     /// </summary>
-    // Reference Source: https://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm
+    // Implementation Source: https://weblog.jamisbuck.org/2011/1/10/maze-generation-prim-s-algorithm
     public sealed class Prims
     {
         /// <summary>
@@ -25,9 +25,19 @@ namespace Game.RoomGeneration
         public sealed class Cell
         {
             /// <summary>
+            /// The available states of a cell.
+            /// </summary>
+            public enum CellState
+            {
+                Unvisited,
+                Visited,
+                InFrontier
+            }
+
+            /// <summary>
             /// The directions of each wall. There is only four walls per cell.
             /// </summary>
-            public enum Direction
+            public enum WallDirection
             {
                 North,
                 South,
@@ -38,29 +48,29 @@ namespace Game.RoomGeneration
             /// <summary>
             /// Converts a Vector2Int direction to a matching wall direction.
             /// </summary>
-            private static readonly Dictionary<Vector2Int, Direction> VectorToDirection = new()
+            private static readonly Dictionary<Vector2Int, WallDirection> VectorToDirection = new()
             {
-                [Vector2Int.up] = Direction.North,
-                [Vector2Int.down] = Direction.South,
-                [Vector2Int.right] = Direction.East,
-                [Vector2Int.left] = Direction.West,
+                [Vector2Int.up] = WallDirection.North,
+                [Vector2Int.down] = WallDirection.South,
+                [Vector2Int.right] = WallDirection.East,
+                [Vector2Int.left] = WallDirection.West,
             };
 
             /// <summary>
             /// The opposite directions of each wall direction.
             /// </summary>
-            private static readonly Dictionary<Direction, Direction> OppositeDirections = new()
+            private static readonly Dictionary<WallDirection, WallDirection> OppositeDirections = new()
             {
-                [Direction.North] = Direction.South,
-                [Direction.South] = Direction.North,
-                [Direction.East] = Direction.West,
-                [Direction.West] = Direction.East
+                [WallDirection.North] = WallDirection.South,
+                [WallDirection.South] = WallDirection.North,
+                [WallDirection.East] = WallDirection.West,
+                [WallDirection.West] = WallDirection.East
             };
 
             /// <summary>
             /// The walls of the cell.
             /// </summary>
-            public Dictionary<Direction, bool> Walls { get; private set; }
+            public Dictionary<WallDirection, bool> Walls { get; private set; }
             
             /// <summary>
             /// The coordinate of the cell.
@@ -68,9 +78,9 @@ namespace Game.RoomGeneration
             public Vector2Int Coordinate { get; private set; }
 
             /// <summary>
-            /// Whether the cell has been visited.
+            /// The current state of the cell.
             /// </summary>
-            public bool Visited;
+            public CellState State;
 
             /// <summary>
             /// Constructs a cell with a specified x and y coordinate.
@@ -82,7 +92,7 @@ namespace Game.RoomGeneration
                 Walls = new();
                 Coordinate = new(x, y);
 
-                foreach (Direction wall in Enum.GetValues(typeof(Direction)))
+                foreach (WallDirection wall in Enum.GetValues(typeof(WallDirection)))
                     Walls.Add(wall, true);
             }
 
@@ -91,7 +101,7 @@ namespace Game.RoomGeneration
             /// </summary>
             /// <param name="direction"></param>
             /// <returns>The flipped direction.</returns>
-            public static Direction FlipDirection(Direction direction)
+            public static WallDirection FlipDirection(WallDirection direction)
             {
                 return OppositeDirections[direction];
             }
@@ -102,7 +112,7 @@ namespace Game.RoomGeneration
             /// <param name="a"></param>
             /// <param name="b"></param>
             /// <returns>The direction from a to b.</returns>
-            public static Direction GetDirectionBetweenCells(Cell a, Cell b)
+            public static WallDirection GetDirectionBetweenCells(Cell a, Cell b)
             {
                 Vector2Int normal = (b.Coordinate - a.Coordinate).Normalized();
                 return VectorToDirection[normal];
@@ -130,43 +140,49 @@ namespace Game.RoomGeneration
         }
 
         /// <summary>
-        /// Generates a random maze using Prim's Algorithm.
+        /// Generates a random maze using Prim's Algorithm. Uses a custom Random generator.
         /// </summary>
         /// <param name="maxDepth"></param>
-        /// <param name="seed"></param>
-        public void Generate(int maxDepth, int seed = 0) 
+        /// <param name="generator"></param>
+        public void Generate(int maxDepth, System.Random generator) 
         {
+            uint currentDepth = 0;
+
             List<Cell> frontier = new();
-            System.Random generator = new(seed);
 
             void VisitCell(Cell cell)
             {
-                cell.Visited = true;
+                cell.State = Cell.CellState.Visited;
 
-                foreach (Cell neighbor in GetNeighborsOfCell(cell))
+                foreach (Cell neighbor in GetNeighborsOfCell(cell, Cell.CellState.Unvisited))
+                {
+                    neighbor.State = Cell.CellState.InFrontier;
                     frontier.Add(neighbor);
+                }
             }
 
             ResetGrid();
             VisitCell(Grid[generator.Next(0, m_size), generator.Next(0, m_size)]);
 
-            while (!frontier.IsEmpty()) 
+            while (!frontier.IsEmpty() && currentDepth < maxDepth) 
             {
                 Cell current = frontier.PopRandomElement(generator);
 
-                List<Cell> neighbors = GetNeighborsOfCell(current, true);
+                List<Cell> neighbors = GetNeighborsOfCell(current, Cell.CellState.Visited);
 
                 if (!neighbors.IsEmpty())
                 {
                     Cell neighbor = neighbors.GetRandomElement(generator);
 
-                    Cell.Direction direction = Cell.GetDirectionBetweenCells(current, neighbor);
+                    Cell.WallDirection direction = Cell.GetDirectionBetweenCells(current, neighbor);
 
                     current.Walls[direction] = false;
                     neighbor.Walls[Cell.FlipDirection(direction)] = false;
                 }
 
                 VisitCell(current);
+
+                currentDepth++;
             }
         }
 
@@ -191,12 +207,12 @@ namespace Game.RoomGeneration
         }
 
         /// <summary>
-        /// Returns all of the not visited neighbors of a cell. Optionally, you can include visited cells or not.
+        /// Returns all of the not visited neighbors of a cell. Optionally, you can target cells with a certain state.
         /// </summary>
         /// <param name="cell"></param>
-        /// <param name="ignoreVisited"></param>
+        /// <param name="targetState"></param>
         /// <returns>The neighbors of a cell.</returns>
-        private List<Cell> GetNeighborsOfCell(Cell cell, bool ignoreVisited = false)
+        private List<Cell> GetNeighborsOfCell(Cell cell, Cell.CellState targetState = Cell.CellState.Unvisited)
         {
             List<Cell> neighbors = new();
 
@@ -204,7 +220,7 @@ namespace Game.RoomGeneration
             { 
                 Vector2Int neighborCord = cell.Coordinate + direction;
 
-                if (IsValidCordinate(neighborCord) && Grid[neighborCord.x, neighborCord.y].Visited == ignoreVisited)
+                if (IsValidCordinate(neighborCord) && Grid[neighborCord.x, neighborCord.y].State == targetState)
                     neighbors.Add(Grid[neighborCord.x, neighborCord.y]);
             }
 

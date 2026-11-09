@@ -6,7 +6,7 @@ namespace System.Collections.Generic
     /// <summary>
     /// Extension methods for the generic List class.
     /// </summary>
-    public static class ListUtilities
+    public static partial class ListUtilities
     {
         /// <summary>
         /// Returns whether or not the list is empty.
