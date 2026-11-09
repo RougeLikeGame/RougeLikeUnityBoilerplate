@@ -22,7 +22,7 @@ namespace Game.RoomGeneration
         /// The maximum amount of rooms that can be generated
         /// </summary>
         [SerializeField]
-        private int m_maxDepth;
+        private int m_maxRooms;
 
         /// <summary>
         /// The seed of the room generation.
@@ -58,13 +58,9 @@ namespace Game.RoomGeneration
             uint weightSum = m_availableRooms.GetWeightSum();
             System.Random generator = new(m_seed);
             Prims maze = new Prims(m_gridSize);
-            maze.Generate(m_maxDepth, generator);
 
-            foreach (Prims.Cell cell in maze.Grid)
+            foreach (Prims.Cell cell in maze.Generate(m_maxRooms, generator))
             {
-                if (cell.State != Prims.Cell.CellState.Visited)
-                    continue;
-
                 RoomData randomRoom = m_availableRooms.GetWeightedElement(generator, weightSum);
                 RoomObject room = Instantiate(randomRoom.RoomObject, new(cell.Coordinate.x - m_gridSize / 2.0f, cell.Coordinate.y - m_gridSize / 2.0f), Quaternion.identity, transform);
 

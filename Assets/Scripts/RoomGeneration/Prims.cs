@@ -142,12 +142,12 @@ namespace Game.RoomGeneration
         /// <summary>
         /// Generates a random maze using Prim's Algorithm. Uses a custom Random generator.
         /// </summary>
-        /// <param name="maxDepth"></param>
+        /// <param name="maxCells"></param>
         /// <param name="generator"></param>
-        public void Generate(int maxDepth, System.Random generator) 
+        /// <returns>The path generated in the maze.</returns>
+        public List<Cell> Generate(int maxCells, System.Random generator) 
         {
-            uint currentDepth = 0;
-
+            List<Cell> path = new();
             List<Cell> frontier = new();
 
             void VisitCell(Cell cell)
@@ -159,12 +159,14 @@ namespace Game.RoomGeneration
                     neighbor.State = Cell.CellState.InFrontier;
                     frontier.Add(neighbor);
                 }
+
+                path.Add(cell);
             }
 
             ResetGrid();
-            VisitCell(Grid[generator.Next(0, m_size), generator.Next(0, m_size)]);
+            VisitCell(Grid[m_size/2, m_size/2]);
 
-            while (!frontier.IsEmpty() && currentDepth < maxDepth) 
+            while (!frontier.IsEmpty() && path.Count < maxCells) 
             {
                 Cell current = frontier.PopRandomElement(generator);
 
@@ -181,9 +183,9 @@ namespace Game.RoomGeneration
                 }
 
                 VisitCell(current);
-
-                currentDepth++;
             }
+
+            return path;
         }
 
         /// <summary>

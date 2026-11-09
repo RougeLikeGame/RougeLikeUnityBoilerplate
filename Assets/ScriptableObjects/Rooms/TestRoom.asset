@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 742ed2c7b056b4246af6c6281dad5bf6, type: 3}
   m_Name: TestRoom
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.RoomData
-  <Weight>k__BackingField: 15
+  <Weight>k__BackingField: 5
   <RoomObject>k__BackingField: {fileID: 3701818612290471358, guid: 1287bb641cb106e4c8c63743a110daf6, type: 3}
   <GenerateOnce>k__BackingField: 0

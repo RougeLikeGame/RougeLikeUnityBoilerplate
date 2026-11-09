@@ -12,13 +12,9 @@ namespace Game.RoomGeneration
         /// <summary>
         /// The walls of the room.
         /// </summary>
+        [Header("Generation")]
         [SerializeField]
         private Dictionary<Prims.Cell.WallDirection, SpriteRenderer> m_walls;
-
-        /// <summary>
-        /// The sprite of the room.
-        /// </summary>
-        private SpriteRenderer m_sprite;
 
         /// <summary>
         /// Modifies the room to visualize the cell of the RoomGenerator's grid.
@@ -36,13 +32,11 @@ namespace Game.RoomGeneration
                 if (pair.Value)
                     sprite.color = Color.black;
                 else
+                {
                     Destroy(sprite.gameObject);
+                    m_walls.Remove(pair.Key);
+                }
             }
-        }
-
-        private void Awake()
-        {
-            m_sprite = GetComponent<SpriteRenderer>();
         }
     }
 }

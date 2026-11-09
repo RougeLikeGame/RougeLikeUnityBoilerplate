@@ -11,12 +11,20 @@ namespace Game.RoomGeneration
     {
         public override void OnInspectorGUI()
         {
-            DrawDefaultInspector();
-
             RoomGenerator script = (RoomGenerator)target;
 
-            if (GUILayout.Button("Generate") && EditorApplication.isPlaying)
+            DrawDefaultInspector();
+
+            if (GUILayout.Button("Generate")) 
+            {
+                if (!EditorApplication.isPlaying)
+                {
+                    Debug.LogWarning("Warning - Unable to generate rooms while the editor isn't in play mode!");
+                    return;
+                }
+
                 script.RegenerateRooms();
+            }
         }
     }
 }
