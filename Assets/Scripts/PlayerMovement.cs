@@ -169,6 +169,10 @@ public class PlayerMovement : MonoBehaviour
         if (IsAttacking)
         {
             sword.enabled = true;
+            float angle = (int)animator.CurrentFacing * 90;
+            sword.transform.SetPositionAndRotation(sword.transform.position, Quaternion.Euler(0, 0, angle));
+            
+            Debug.Log("Sword angle: " + angle.ToString());
             if (attackTimer >= attackDuration)
             {
                 attackTimer = 0;
@@ -176,10 +180,6 @@ public class PlayerMovement : MonoBehaviour
                 sword.enabled = false;
             }
         }
-
-        sword.transform.Rotate(0, 0, Mathf.Sin((int)animator.CurrentFacing * Mathf.PI));
-
-        //sword.transform.rotation += Quaternion.Euler(0f, 0f, Mathf.Sin((int)animator.CurrentFacing * Mathf.PI) * 90);
 
         //Flip sprite left/right.
         if (spriteRenderer != null && Mathf.Abs(MoveInput.x) > 0.01f)
@@ -225,7 +225,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        boss.ReceiveAggression();
+        Debug.Log("Enemy hit: " + collision.tag);
+        if (collision.CompareTag("Boss"))
+            boss.ReceiveAggression();
     }
 
 }
