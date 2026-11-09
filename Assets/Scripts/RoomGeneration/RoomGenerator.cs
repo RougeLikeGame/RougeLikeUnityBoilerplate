@@ -54,15 +54,13 @@ namespace Game.RoomGeneration
         private IEnumerator Generate()
         {
             Prims maze = new Prims(m_gridSize);
+            maze.Generate(m_maxDepth, m_seed);
 
-            List<Prims.Cell> path = maze.Generate(m_maxDepth, m_seed);
-            Prims.Cell start = path.First(), end = path.Last();
-
-            foreach (Prims.Cell cell in path)
+            foreach (Prims.Cell cell in maze.Grid)
             {
                 Room room = Instantiate(m_room, new(cell.Coordinate.x - m_gridSize / 2.0f, cell.Coordinate.y - m_gridSize / 2.0f), Quaternion.identity, transform);
 
-                room.VisualizeCell(cell, cell == end ? Room.RoomType.End : cell == start ? Room.RoomType.Start : Room.RoomType.Default);
+                room.Initialize(cell);
 
                 yield return new WaitForSeconds(0.20f);
             }

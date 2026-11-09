@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Game.RoomGeneration
@@ -13,10 +14,27 @@ namespace Game.RoomGeneration
         /// <summary>
         /// All directions to each neighbor of a cell
         /// </summary>
-        private static readonly Vector2Int[] NeighborDirections = { Vector2Int.up, Vector2Int.down, Vector2Int.left, Vector2Int.right };
+        private static readonly Vector2Int[] NeighborDirections = {
+            Vector2Int.down,
+            Vector2Int.up, 
+            Vector2Int.left, 
+            Vector2Int.right 
+        };
 
+        [Serializable]
         public sealed class Cell
         {
+            /// <summary>
+            /// The directions of each wall. There is only four walls per cell.
+            /// </summary>
+            public enum Direction
+            {
+                North,
+                South,
+                East,
+                West
+            }
+
             /// <summary>
             /// Converts a Vector2Int direction to a matching wall direction.
             /// </summary>
@@ -38,17 +56,6 @@ namespace Game.RoomGeneration
                 [Direction.East] = Direction.West,
                 [Direction.West] = Direction.East
             };
-
-            /// <summary>
-            /// The directions of each wall. There is only four walls per cell.
-            /// </summary>
-            public enum Direction
-            {
-                North,
-                South,
-                East,
-                West
-            }
 
             /// <summary>
             /// The walls of the cell.
@@ -105,7 +112,7 @@ namespace Game.RoomGeneration
         /// <summary>
         /// The grid Prim's Algorithm is used on.
         /// </summary>
-        private readonly Cell[,] m_grid;
+        public readonly Cell[,] Grid;
 
         /// <summary>
         /// The size of the grid.
@@ -118,7 +125,7 @@ namespace Game.RoomGeneration
         /// <param name="size"></param>
         public Prims(int size)
         {
-            m_grid = new Cell[size, size];
+            Grid = new Cell[size, size];
             m_size = size;
         }
 
@@ -127,10 +134,9 @@ namespace Game.RoomGeneration
         /// </summary>
         /// <param name="maxDepth"></param>
         /// <param name="seed"></param>
-        /// <returns>All of the cells that were modified in the grid.</returns>
-        public List<Cell> Generate(int maxDepth, int seed = 0) 
+        public void Generate(int maxDepth, int seed = 0) 
         {
-            List<Cell> path = new(), frontier = new();
+            List<Cell> frontier = new();
             System.Random generator = new(seed);
 
             void VisitCell(Cell cell)
@@ -139,18 +145,16 @@ namespace Game.RoomGeneration
 
                 foreach (Cell neighbor in GetNeighborsOfCell(cell))
                     frontier.Add(neighbor);
-
-                path.Add(cell);
             }
 
             ResetGrid();
-            VisitCell(m_grid[generator.Next(0, m_size), generator.Next(0, m_size)]);
+            VisitCell(Grid[generator.Next(0, m_size), generator.Next(0, m_size)]);
 
             while (!frontier.IsEmpty()) 
             {
                 Cell current = frontier.PopRandomElement(generator);
 
-                List<Cell> neighbors = GetNeighborsOfCell(current);
+                List<Cell> neighbors = GetNeighborsOfCell(current, true);
 
                 if (!neighbors.IsEmpty())
                 {
@@ -164,10 +168,6 @@ namespace Game.RoomGeneration
 
                 VisitCell(current);
             }
-
-            path.Reverse();
-
-            return path;
         }
 
         /// <summary>
@@ -177,7 +177,7 @@ namespace Game.RoomGeneration
         {
             for (int x = 0; x < m_size; x++)
                 for (int y = 0; y < m_size; y++)
-                    m_grid[x, y] = new Cell(x, y);
+                    Grid[x, y] = new Cell(x, y);
         }
 
         /// <summary>
@@ -191,11 +191,12 @@ namespace Game.RoomGeneration
         }
 
         /// <summary>
-        /// Returns all of the not visited neighbors of a cell.
+        /// Returns all of the not visited neighbors of a cell. Optionally, you can include visited cells or not.
         /// </summary>
         /// <param name="cell"></param>
+        /// <param name="ignoreVisited"></param>
         /// <returns>The neighbors of a cell.</returns>
-        private List<Cell> GetNeighborsOfCell(Cell cell)
+        private List<Cell> GetNeighborsOfCell(Cell cell, bool ignoreVisited = false)
         {
             List<Cell> neighbors = new();
 
@@ -203,8 +204,8 @@ namespace Game.RoomGeneration
             { 
                 Vector2Int neighborCord = cell.Coordinate + direction;
 
-                if (IsValidCordinate(neighborCord) && !m_grid[neighborCord.x, neighborCord.y].Visited)
-                    neighbors.Add(m_grid[neighborCord.x, neighborCord.y]);
+                if (IsValidCordinate(neighborCord) && Grid[neighborCord.x, neighborCord.y].Visited == ignoreVisited)
+                    neighbors.Add(Grid[neighborCord.x, neighborCord.y]);
             }
 
             return neighbors;

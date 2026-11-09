@@ -33,7 +33,7 @@ namespace Game.RoomGeneration
         /// The walls of the room.
         /// </summary>
         [SerializeField]
-        private List<SpriteRenderer> m_walls;
+        private Dictionary<Prims.Cell.Direction, SpriteRenderer> m_walls;
 
         /// <summary>
         /// The sprite of the room.
@@ -44,18 +44,14 @@ namespace Game.RoomGeneration
         /// Modifies the room to visualize the cell of the RoomGenerator's grid.
         /// </summary>
         /// <param name="cell"></param>
-        public void VisualizeCell(Prims.Cell cell, RoomType type = RoomType.Default)
+        public void Initialize(Prims.Cell cell)
         {
-            m_sprite.color = RoomTypeColors[type];
-
             foreach (KeyValuePair<Prims.Cell.Direction, bool> pair in cell.Walls)
             {
-                int index = (int)pair.Key;
+                SpriteRenderer sprite;
 
-                if (index > m_walls.Count)
+                if (!m_walls.TryGetValue(pair.Key, out sprite))
                     continue;
-
-                SpriteRenderer sprite = m_walls[index];
 
                 if (pair.Value)
                     sprite.color = Color.black;

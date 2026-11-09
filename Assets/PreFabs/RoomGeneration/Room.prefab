@@ -210,10 +210,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.Room
   m_walls:
-  - {fileID: 3398916657269075410}
-  - {fileID: 443787091051027015}
-  - {fileID: 6306275692454829692}
-  - {fileID: 7298498674491837258}
+  - key: 0
+    value: {fileID: 3398916657269075410}
+  - key: 1
+    value: {fileID: 443787091051027015}
+  - key: 3
+    value: {fileID: 7298498674491837258}
+  - key: 2
+    value: {fileID: 6306275692454829692}
+  m_cell:
+    <Walls>k__BackingField: []
+    State: 0
 --- !u!1 &2474079533842486205
 GameObject:
   m_ObjectHideFlags: 0
