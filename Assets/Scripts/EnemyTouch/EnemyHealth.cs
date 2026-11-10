@@ -10,10 +10,10 @@ public class EnemyHealth : MonoBehaviour
     public float CurrentHealth { get; private set; }
     public bool IsDead { get; private set; }
 
-    //Set by the enemy when it can't be hit (underground, in the sky)
+    //Set by the enemy when it can't be hit 
     public bool Invulnerable { get; set; }
 
-    public event Action<float> OnHurt; //damage taken
+    public event Action<float> OnHurt;   // damage taken
     public event Action OnDied;
 
     //Every living enemy, so debug tools (and later, room-clear checks) can find them.
@@ -25,8 +25,18 @@ public class EnemyHealth : MonoBehaviour
         CurrentHealth = maxHealth;
     }
 
-    private void OnEnable()  => all.Add(this);
+    private void OnEnable() => all.Add(this);
     private void OnDisable() => all.Remove(this);
+
+    //kills the enemy even if it's hidden (used when the boss is won, to calm the room)
+    public void ForceKill()
+    {
+        if (IsDead) return;
+        Invulnerable = false;
+        CurrentHealth = 0f;
+        IsDead = true;
+        OnDied?.Invoke();
+    }
 
     //Returns true if the hit actually landed
     public bool TakeDamage(float amount)

@@ -60,7 +60,7 @@ public class BurrowerEnemy : EnemyBase
                 case State.Burrowing: return "Burrow";
                 case State.Hurt: return "Hurt";
                 case State.Dead: return "Death";
-                default: return "Exposed";
+                default: return "Exposed"; // Exposed 
             }
         }
     }
@@ -73,7 +73,11 @@ public class BurrowerEnemy : EnemyBase
         if (moundRenderer != null) moundBasePos = moundRenderer.transform.localPosition;
     }
 
-    private void Start() => Enter(State.Underground);
+    protected override void Start()
+    {
+        base.Start();
+        Enter(State.Underground);
+    }
 
     protected override void Update()
     {
@@ -91,7 +95,7 @@ public class BurrowerEnemy : EnemyBase
                 break;
 
             case State.Telegraph:
-                AnimateMound(0.15f, 0.06f); //shakes hard
+                AnimateMound(0.15f, 0.06f); // shakes hard
                 UpdateTelegraph();
                 if (stateTimer <= 0f) Enter(State.Emerging);
                 break;
@@ -153,7 +157,7 @@ public class BurrowerEnemy : EnemyBase
                 if (bodyRenderer != null) bodyRenderer.enabled = true;
                 if (moundRenderer != null) moundRenderer.enabled = false;
                 SetTouchable(true);
-                //the hit happens the moment it bursts out, on the locked spot.
+                // The hit happens the moment it bursts out, on the locked spot.
                 if (PlayerWithin(transform.position, strikeRadius)) DamagePlayer(strikeDamage);
                 if (telegraphRenderer != null)
                 {
@@ -200,8 +204,7 @@ public class BurrowerEnemy : EnemyBase
         float p = StateProgress01;
         float d = strikeRadius * 2f * Mathf.Lerp(0.3f, 1f, p);
         SizeSprite(telegraphRenderer, d, d);
-        telegraphRenderer.color = new Color(telegraphColor.r, telegraphColor.g, telegraphColor.b,
-                                            telegraphColor.a * Mathf.Lerp(0.3f, 1f, p));
+        telegraphRenderer.color = new Color(telegraphColor.r, telegraphColor.g, telegraphColor.b, telegraphColor.a * Mathf.Lerp(0.3f, 1f, p));
     }
 
     protected override void OnHurt(float amount)

@@ -73,7 +73,7 @@ public class EnemySpriteAnimator : MonoBehaviour
             if (e.HasFrames && string.Equals(e.key, key, StringComparison.OrdinalIgnoreCase))
                 return e;
 
-        //Fallback: first entry with frames, so the enemy never goes blank.
+        //fallback: first entry with frames, so the enemy never goes blank.
         foreach (Entry e in animations)
             if (e.HasFrames) return e;
 
