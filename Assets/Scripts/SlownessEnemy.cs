@@ -1,15 +1,39 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class SlownessEnemy : MonoBehaviour
+public class SlownessEnemy : ShadowBoundEnemy
 {
     [SerializeField] PlayerStats player;
     [SerializeField] PlayerMovement playerMove;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] float movementPunish = 0.75f;
+    [SerializeField] SpriteRenderer deathSprite;
 
     private float originalSpeedMultiplier;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
+
+    private IEnumerator deathAnimation(float duration) 
+    { 
+        float elapsedTime = 0f;
+        Color originalColor = deathSprite.color;
+      
+        while (elapsedTime < duration/2)
+        {
+            float t = elapsedTime / (duration/2);
+            deathSprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        while (elapsedTime < duration && elapsedTime > duration/2)
+        {
+            float t = (elapsedTime - duration/2) / (duration/2);
+            deathSprite.color = new Color(originalColor.r, originalColor.g, originalColor.b, 1-t);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        GameObject.Destroy(this.gameObject);
+    }
     void Start()
     {
         originalSpeedMultiplier = playerMove.speedMultiplier;
@@ -35,10 +59,10 @@ public class SlownessEnemy : MonoBehaviour
         }
     }
 
-    void Die() 
+    public override void Die() 
     {
         playerMove.speedMultiplier = originalSpeedMultiplier;
-        GameObject.Destroy(this.gameObject);
-    
+        StartCoroutine(deathAnimation(0.5f));
+
     }
 }
