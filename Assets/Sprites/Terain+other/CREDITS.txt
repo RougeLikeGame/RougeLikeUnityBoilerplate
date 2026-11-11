@@ -1,0 +1,15 @@
+ASCENDANT — Level art credits (Art/Level)
+
+Obstacles/Dungeon, Traps/Spikes, Souls/Doc, Souls/PumpkinDude
+  "Dungeon Tileset II" v1.7 by 0x72 — CC0 (as listed on the itch.io page). https://0x72.itch.io/dungeontileset-ii
+  Files copied unchanged from the pack's /frames folder.
+
+Traps/FireVent, Traps/SandPit
+  "Pixel Trap Pack" by Foozle (commissioned from Baldur) — CC0 (see Foozle_TrapPack_LICENSE_CC0.txt).
+  https://foozlecc.itch.io/trap-pack
+  Modification: "Fire Trap - Level 1" and "Sandworm trap - Level 1" sheets cut into single frames.
+
+Obstacles/Rocks
+  "Free Top Down Rocks" by Wabsa-kha — CC0. https://wabsa-kha.itch.io/free-top-down-rocks-packs
+  [Confirm this is the pack the grey/brown rock sheets came from.]
+  Modification: sheets reduced from 4x to native pixel size and cut into one PNG per rock.

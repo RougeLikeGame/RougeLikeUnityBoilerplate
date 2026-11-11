@@ -1108,6 +1108,7 @@ MonoBehaviour:
   stats: {fileID: 495216893}
   movement: {fileID: 495216894}
   spriteRenderer: {fileID: 495216897}
+  restartAutomatically: 1
   restartDelay: 1.5
   deadTint: {r: 1, g: 0.3, b: 0.3, a: 0.6}
 --- !u!114 &495216901
@@ -2100,12 +2101,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 495216898}
     - target: {fileID: 1337539674708658445, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
+      propertyPath: bodyRadius
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1337539674708658445, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 495216893}
     - target: {fileID: 3821204540708314262, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
       propertyPath: m_Name
       value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 3821204540708314262, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
+      propertyPath: m_TagString
+      value: boss
       objectReference: {fileID: 0}
     - target: {fileID: 5413336030644589360, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
       propertyPath: m_LocalPosition.x
