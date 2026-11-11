@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class WalkerEnemy : EnemyBase
@@ -12,6 +13,9 @@ public class WalkerEnemy : EnemyBase
 
     [Header("Walker: movement")]
     [SerializeField] private float moveSpeed = 2.2f;
+    [Tooltip("How often (seconds) it recalculates its A* path while the way is blocked.")]
+    [SerializeField] private float repathInterval = 0.35f;
+    [SerializeField] private float waypointReachDistance = 0.2f;
 
     [Header("Walker: attack")]
     [Tooltip("Starts winding up when the player is this close (from its body edge).")]
@@ -33,6 +37,10 @@ public class WalkerEnemy : EnemyBase
     private float cooldownTimer;
     private Vector2 attackDir;
     private bool attackLanded;
+    private readonly List<Vector2> path = new List<Vector2>();
+    private int pathIndex;
+    private float repathTimer;
+    private Vector2 moveDir;
 
     private static readonly string[] keys = { "Idle", "Walk", "Windup", "Attack", "Hurt", "Death" };
     public override string[] AnimationKeys => keys;
@@ -69,7 +77,8 @@ public class WalkerEnemy : EnemyBase
 
             case State.Chase:
                 if (!CanTarget || DistToPlayer > loseRange) { Enter(State.Idle); break; }
-                FacePlayer();
+                moveDir = ChaseDirection();
+                FaceDirection(moveDir);
                 CheckContactDamage();
                 if (cooldownTimer <= 0f && DistToPlayer <= bodyRadius + attackRange)
                     Enter(State.Windup);
@@ -101,7 +110,7 @@ public class WalkerEnemy : EnemyBase
         switch (state)
         {
             case State.Chase:
-                v = DirToPlayer * moveSpeed;
+                v = moveDir * moveSpeed;
                 break;
             case State.Attack:
                 v = attackDir * attackLungeSpeed;
@@ -148,6 +157,34 @@ public class WalkerEnemy : EnemyBase
         NotifyStateChanged();
     }
 
+    //Straight at the player if the way is clear, otherwise along an A* path
+    private Vector2 ChaseDirection()
+    {
+        Vector2 pos = transform.position;
+        Vector2 target = player.position;
+
+        if (pathGrid == null || pathGrid.IsClear(pos, target, bodyRadius))
+        {
+            path.Clear();
+            return DirToPlayer;
+        }
+
+        repathTimer -= Time.deltaTime;
+        if (repathTimer <= 0f || pathIndex >= path.Count)
+        {
+            repathTimer = repathInterval;
+            pathGrid.FindPath(pos, target, path);
+            pathIndex = 0;
+        }
+
+        while (pathIndex < path.Count && Vector2.Distance(pos, path[pathIndex]) < waypointReachDistance)
+            pathIndex++;
+
+        if (pathIndex >= path.Count) return DirToPlayer; //no path found: just try going straight
+        Vector2 d = path[pathIndex] - pos;
+        return d.sqrMagnitude > 0.0001f ? d.normalized : Vector2.zero;
+    }
+
     private bool HasLineOfSight()
     {
         if (sightBlockers.value == 0 || player == null) return true;
@@ -166,5 +203,15 @@ public class WalkerEnemy : EnemyBase
         Gizmos.DrawWireSphere(transform.position, detectRange);
         Gizmos.color = new Color(1f, 0.3f, 0.2f, 0.8f);
         Gizmos.DrawWireSphere(transform.position, bodyRadius + attackReach);
+
+        //Current A* path (cyan)
+        Gizmos.color = new Color(0.3f, 1f, 1f, 0.9f);
+        Vector3 prev = transform.position;
+        for (int i = pathIndex; i < path.Count; i++)
+        {
+            Gizmos.DrawLine(prev, path[i]);
+            Gizmos.DrawWireSphere(path[i], 0.08f);
+            prev = path[i];
+        }
     }
 }

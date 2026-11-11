@@ -7,9 +7,9 @@ public class SkyDiverEnemy : EnemyBase
     [Header("Sky Diver: references (drag in)")]
     [Tooltip("Child object holding the enemy sprite. It gets lifted up by its height.")]
     [SerializeField] private Transform visual;
-    [Tooltip("Shadow sprite on the ground (child of the enemy, NOT of Visual).")]
+    [Tooltip("Shadow sprite on the ground")]
     [SerializeField] private SpriteRenderer shadowRenderer;
-    [Tooltip("Optional ring sprite that marks the landing spot during the warning (NOT a child of the enemy).")]
+    [Tooltip("Optional ring sprite that marks the landing spot during the warning. Can be a child")]
     [SerializeField] private SpriteRenderer targetRenderer;
 
     [Header("Sky Diver: flying")]
@@ -46,6 +46,7 @@ public class SkyDiverEnemy : EnemyBase
     private Vector2 diveTarget;
     private float fallFrom;
     private Vector3 visualBasePos;
+    private bool ownsTarget;
 
     private static readonly string[] keys = { "Fly", "DiveWindup", "Dive", "Grounded", "Hurt", "Death" };
     public override string[] AnimationKeys => keys;
@@ -73,10 +74,28 @@ public class SkyDiverEnemy : EnemyBase
         base.Awake();
         if (visual == null) Debug.LogError("SkyDiverEnemy: drag in the Visual child.", this);
         if (visual != null) visualBasePos = visual.localPosition;
-        if (targetRenderer != null) targetRenderer.enabled = false;
+        if (targetRenderer != null)
+        {
+            targetRenderer.enabled = false;
+            //In a prefab the ring has to be a child. Unparent it so it stays put while the diver moves.
+            if (targetRenderer.transform.IsChildOf(transform))
+            {
+                targetRenderer.transform.SetParent(null, true);
+                ownsTarget = true;
+            }
+        }
     }
 
-    private void Start() => Enter(State.Circling);
+    private void OnDestroy()
+    {
+        if (ownsTarget && targetRenderer != null) Destroy(targetRenderer.gameObject);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
+        Enter(State.Circling);
+    }
 
     protected override void Update()
     {

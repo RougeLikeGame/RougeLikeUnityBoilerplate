@@ -1,7 +1,6 @@
 using System;
 using UnityEngine;
 
-
 [RequireComponent(typeof(Rigidbody2D))]
 public abstract class EnemyBase : MonoBehaviour
 {
@@ -13,6 +12,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected Collider2D bodyCollider;
     [Tooltip("The SpriteRenderer showing the enemy art (used for flashes and blinking).")]
     [SerializeField] protected SpriteRenderer bodyRenderer;
+    [Tooltip("Optional: the room's A* grid, so ground enemies walk around obstacles. The spawner fills this in for spawned enemies.")]
+    [SerializeField] protected PathGrid pathGrid;
 
     [Header("Shared")]
     [SerializeField] protected float contactDamage = 1f;
@@ -27,8 +28,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected Color hurtFlashColor = new Color(1f, 1f, 1f);
     [SerializeField] protected Color windupColor = new Color(1f, 0.35f, 0.25f);
 
-
     public abstract string AnimKey { get; }
+    //All animation names this enemy uses (for the animator's "Fill Animation Names" menu)
     public abstract string[] AnimationKeys { get; }
     public float StateProgress01 => stateDuration > 0f ? Mathf.Clamp01(1f - stateTimer / stateDuration) : 1f;
     public Vector2 Facing { get; protected set; } = Vector2.right;
@@ -36,12 +37,13 @@ public abstract class EnemyBase : MonoBehaviour
     public bool IsDead { get; private set; }
 
     public event Action<string> OnStateChanged;
-
     protected Rigidbody2D rb;
     protected float stateTimer;
     protected float stateDuration;
     protected bool playerDead;
+    //Set true during a wind-up to make the enemy blink
     protected bool blink;
+    //Alpha of the body sprite (for fading in/out)
     protected float bodyAlpha = 1f;
 
     private Color flashColor;
@@ -49,6 +51,7 @@ public abstract class EnemyBase : MonoBehaviour
     private const float FlashDuration = 0.15f;
 
     protected abstract string StateName { get; }
+    //True = normal physics (bumps into walls). False = kinematic (ignores walls: burrowing, flying)
     protected virtual bool UsesPhysicsMovement => true;
 
     protected virtual void Awake()
@@ -58,11 +61,27 @@ public abstract class EnemyBase : MonoBehaviour
         rb.gravityScale = 0f;
         rb.freezeRotation = true;
         rb.interpolation = RigidbodyInterpolation2D.Interpolate;
+    }
 
+    //Checked in Start (not Awake) so a spawner has time to call SetTarget first
+    protected virtual void Start()
+    {
         if (playerStats == null || player == null)
-            Debug.LogError($"{GetType().Name} on '{name}': drag in Player Stats and Player.", this);
+            Debug.LogError($"{GetType().Name} on '{name}': drag in Player Stats and Player (or spawn it with an EnemySpawner).", this);
         if (health == null)
             Debug.LogWarning($"{GetType().Name} on '{name}': no EnemyHealth assigned, so it can't be hurt.", this);
+    }
+
+    //Gives a spawned enemy its targets. Prefabs can't store references to objects in a scene,
+    //so EnemySpawner calls this right after creating the enemy.
+    public void SetTarget(PlayerStats stats, Transform playerTransform, PathGrid grid = null)
+    {
+        if (playerStats != null && isActiveAndEnabled) playerStats.OnDied -= HandlePlayerDied;
+        playerStats = stats;
+        player = playerTransform;
+        if (grid != null) pathGrid = grid;
+        playerDead = playerStats != null && playerStats.IsDead;
+        if (playerStats != null && isActiveAndEnabled) playerStats.OnDied += HandlePlayerDied;
     }
 
     protected virtual void OnEnable()
@@ -97,6 +116,7 @@ public abstract class EnemyBase : MonoBehaviour
         stateDuration = seconds;
     }
 
+    //Makes sure a warning is never shorter than minTelegraphTime
     protected float TelegraphTime(float wanted) => Mathf.Max(minTelegraphTime, wanted);
 
     protected bool CanTarget => player != null && playerStats != null && !playerDead && !IsDead;
@@ -113,12 +133,14 @@ public abstract class EnemyBase : MonoBehaviour
         }
     }
 
+    //is the player within this distance of a point
     protected bool PlayerWithin(Vector2 point, float radius)
     {
         if (player == null) return false;
         return Vector2.Distance(player.position, point) <= radius + playerRadius;
     }
 
+    //Damages the player. Returns true if it landed (not blocked by i-frames)
     protected bool DamagePlayer(float amount)
     {
         if (!CanTarget || playerStats.IsDead || playerStats.IsInvincible || amount <= 0f) return false;
@@ -144,6 +166,7 @@ public abstract class EnemyBase : MonoBehaviour
         if (!FacingLocked && Mathf.Abs(d.x) > 0.05f) Facing = d;
     }
 
+    //For Dynamic bodies (Walker)
     protected void SetVelocity(Vector2 v)
     {
         if (rb == null || rb.bodyType != RigidbodyType2D.Dynamic) return;
@@ -154,6 +177,7 @@ public abstract class EnemyBase : MonoBehaviour
 #endif
     }
 
+    //for Kinematic bodies (Burrower, Sky Diver): move ignoring walls. Call from FixedUpdate
     protected void MoveKinematic(Vector2 velocity)
     {
         if (rb == null) return;
@@ -173,6 +197,8 @@ public abstract class EnemyBase : MonoBehaviour
     }
 
     protected void NotifyStateChanged() => OnStateChanged?.Invoke(StateName);
+
+    //sizes a sprite in world units, whatever size the sprite file is
     protected static void SizeSprite(SpriteRenderer sr, float width, float height)
     {
         if (sr == null || sr.sprite == null) return;
@@ -195,7 +221,6 @@ public abstract class EnemyBase : MonoBehaviour
         c.a = bodyAlpha;
         bodyRenderer.color = c;
     }
-
 
     private void HandleHurt(float amount)
     {
@@ -223,8 +248,11 @@ public abstract class EnemyBase : MonoBehaviour
         OnPlayerDied();
     }
 
+    //Called when the enemy takes damage but doesn't die
     protected abstract void OnHurt(float amount);
+    //called once when the enemy dies
     protected abstract void OnDeath();
+    //Called when the player dies (stop attacking)
     protected abstract void OnPlayerDied();
 
     protected virtual void OnDrawGizmosSelected()
