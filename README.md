@@ -335,3 +335,135 @@ Boss Demo Video:
 https://youtu.be/oDLbD5kaubc
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Release Notes
+Testing Session 1 
+Play it:
+Controls
+Action
+Keyboard
+Move
+WASD
+Sprint
+Left Shift
+Attack
+F
+Interact / Comfort
+E
+Pause
+Esc or P
+
+What's in this build
+The full core loop: main menu -> the boss room -> reach an ending (ASCENDED or YOU FELL) -> Play Again / Retry / Main Menu.
+The Scarcity Remnant (signature encounter): attacking it feeds it (it grows, hits harder, and the room darkens). Comforting Lost Souls starves it until it transforms. It has three phases (Weakened / Stable / Ravenous), and every attack is telegraphed.
+Lost Souls: press E near one during the fight to weaken the boss. They come back after resting, so you can always recover.
+The sword attack: 4-direction swing with hit-stop. It damages enemies, feeds the boss and breaks crates.
+Three enemy types, each with a state machine and a fair warning:
+Walker: chases you, pathing around obstacles with A*, and winds up before it swings.
+Burrower (worm): travels underground. A dirt mound shows where it is, then a warning circle appears before it bursts up.
+Sky Diver: its shadow follows you, then a target ring appears before it dives.
+The enemy spawner: waves, random fair spawn points with warning markers
+Obstacles and traps: rocks and crates, and spike traps that rattle before they rise and hurt enemies too.
+Player health and State Meter HUD, a boss bar, and perception states (Unseen / Glimpsed / Visible).
+Main menu and pause menu with options (volume, fullscreen, saved between sessions).
+Not in this build yet (planned)
+A How to Play screen or in-game tutorial
+More rooms and room-to-room transitions (this build is a single arena)
+Civilian NPCs with their own behaviour 
+Behavior tree enemy version, flocking enemy, more enemy types
+Known bugs and limitations
+In the browser, Esc may leave fullscreen instead of pausing. Press P to pause.
+The Burrower and Sky Diver ignore obstacles on purpose: they travel under and over them.
+Enemies walk onto spike traps on purpose, so you can lure them in.
+Credits
+Player: Atari Boy / Foozle (CC0) · Boss golem: Kalponic Studio · Enemies: Luiz Melo (CC0) · Lost Souls: Pixel-boy & AAA, Ninja Adventure (CC0) · Obstacles/spikes: 0x72 (CC0) · Rocks: Wabsa-kha (CC0) · UI sounds: Kenney (CC0), Joseph Sardin / BigSoundBank (CC0) · Fonts: Cinzel, Cormorant Garamond (SIL OFL) 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ASCENDANT Alpha Test Plan (Testing Session 1)
+Build:  Session length: ~10 min per tester (6–8 min of play, 2–3 min of questions) · Testers: classmates, playing for the first time
+Session script
+What we say before they play:
+"This is ASCENDANT, an early build of our game. Play it the way you normally would, and please think out loud while you play. We can't answer questions or give hints during the game, because whatever confuses you is exactly what we need to find. It takes about five to eight minutes, and we'll ask a few questions at the end."
+Tasks we give them:
+Start the game from the main menu.
+Explore the area and deal with whatever you find.
+Try to reach an ending.
+When you reach an ending, choose what you'd like to do next.
+Rules for the observer:
+Do not explain or hint. Never mention the souls, helping, or the E key. If you feel the need to explain something, write it down instead, because that's a finding.
+If the tester is stuck for more than 60 seconds, mark it in the notes and keep watching.
+Write down any quotes, word for word.
+Questions 
+#
+Question
+What we observe / measure
+1
+Do players discover, without being told, that comforting souls weakens the boss?(Risk 2)
+Time from the boss waking to the first comfort. Blows struck before the first comfort (stats screen). Won by helping? (Y/N). Post-play:"What made the boss stronger? What made it weaker?", marked correct or incorrect.
+2
+Can players see the boss and enemy attacks coming and dodge them? (Risk 1)
+Hits taken, tallied by source: slam, lunge, worm, diver, walker, spikes. Post-play: "When you got hit, did you see it coming?" rated 1–5. Any "that's unfair" moments, with quotes.
+3
+Can a first-time player start, play and finish with no help?
+Questions asked or moments of hesitation. Time from the main menu to the first movement. Whether they found Attack (F) and Interact (E) on their own (Y/N each). Post-play: "How clear were the controls?" rated 1–5.
+4
+Is one full loop the right length and difficulty?
+Outcome (win / lose). Deaths before winning or giving up. Time to the first outcome (target: 3–6 min). Retry rate: did they press Retry or Play Again (Y/N)? Post-play: "How hard was it?" rated 1 (too easy) to 5 (too hard).
+5
+Does combat feel good and do enemies feel smart?
+Post-play: "Did your sword hits feel strong?" rated 1–5. Observe: times an enemy got stuck on an obstacle (tally). Times the player was hit by the boss through a soul interaction (tally).
+
+Success targets (what counts as "working"):
+Q1: at least half of testers comfort a soul within 2 minutes of the boss waking, and at least half say correctly what made the boss stronger and weaker.
+Q2: the average "saw it coming" rating is 4 or higher.
+Q3: zero questions needed to finish.
+Q4: the first outcome comes in 3–6 minutes, and the difficulty rating is around 3.
+How we record results
+Observer sheet: one row per tester in our shared spreadsheet, using the columns from 
+Post-play form: a short Form/the class discussion post with the 1–5 ratings and the two open questions from Q1. The link goes in the spreadsheet.
+Quotes and notes: in the notes column, word for word.
+After the session: we average the ratings, count the Y/N answers, compare them to the success targets, and turn every problem that comes up more than once into a Beta task on the board.
+
+
