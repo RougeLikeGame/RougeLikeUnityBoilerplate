@@ -454,6 +454,9 @@ Outcome (win / lose). Deaths before winning or giving up. Time to the first outc
 5
 Does combat feel good and do enemies feel smart?
 Post-play: "Did your sword hits feel strong?" rated 1–5. Observe: times an enemy got stuck on an obstacle (tally). Times the player was hit by the boss through a soul interaction (tally).
+6
+Did the sword combat feel intuitive and balanced? rating 1-5
+
 
 Success targets (what counts as "working"):
 Q1: at least half of testers comfort a soul within 2 minutes of the boss waking, and at least half say correctly what made the boss stronger and weaker.
