@@ -14,15 +14,9 @@ namespace Game.RoomGeneration
         /// <summary>
         /// The size of the grid.
         /// </summary>
-        [Header("Settings")]
+        [Header("Generation Settings")]
         [SerializeField]
         private int m_gridSize;
-
-        /// <summary>
-        /// The maximum amount of rooms that can be generated
-        /// </summary>
-        [SerializeField]
-        private int m_maxRooms;
 
         /// <summary>
         /// The seed of the room generation.
@@ -33,9 +27,21 @@ namespace Game.RoomGeneration
         /// <summary>
         /// The available rooms that can be randomly chosen and generated.
         /// </summary>
-        [Header("Generation")]
+        [Header("Room Generation")]
         [SerializeField]
         private List<RoomData> m_availableRooms;
+
+        /// <summary>
+        /// The maximum amount of rooms that can be generated
+        /// </summary>
+        [SerializeField]
+        private int m_maxRooms;
+
+        [SerializeField]
+        private int m_roomWidth;
+
+        [SerializeField]
+        private int m_roomHeight;
 
         /// <summary>
         /// Clears old rooms and regenerates new ones.
@@ -59,10 +65,14 @@ namespace Game.RoomGeneration
             System.Random generator = new(m_seed);
             Prims maze = new Prims(m_gridSize);
 
+            float halfGridSize = m_gridSize / 2.0f;
+            float halfRoomWidth = m_roomWidth / 2.0f;
+            float halfRoomHeight = m_roomHeight / 2.0f;
+
             foreach (Prims.Cell cell in maze.Generate(m_maxRooms, generator))
             {
                 RoomData randomRoom = m_availableRooms.GetWeightedElement(generator, weightSum);
-                RoomObject room = Instantiate(randomRoom.RoomObject, new(cell.Coordinate.x - m_gridSize / 2.0f, cell.Coordinate.y - m_gridSize / 2.0f), Quaternion.identity, transform);
+                RoomObject room = Instantiate(randomRoom.RoomObject, new(halfRoomWidth - m_roomWidth * (halfGridSize - cell.Coordinate.x), halfRoomHeight - m_roomHeight * (halfGridSize - cell.Coordinate.y)), Quaternion.identity, transform);
 
                 room.Initialize(cell);
 

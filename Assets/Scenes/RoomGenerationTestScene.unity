@@ -149,12 +149,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.RoomGenerator
   m_gridSize: 5
-  m_maxRooms: 2
   m_seed: 1
   m_availableRooms:
   - {fileID: 11400000, guid: c9b61f894ab60ac439c29138dd1cd637, type: 2}
   - {fileID: 11400000, guid: 66cfe09705a2f414f980e15af2317eb8, type: 2}
   - {fileID: 11400000, guid: c72a478240ffa6742b75b205543c219a, type: 2}
+  m_maxRooms: 2
+  m_roomWidth: 1
+  m_roomHeight: 1
 --- !u!4 &986405920
 Transform:
   m_ObjectHideFlags: 0
