@@ -4463,7 +4463,7 @@ MonoBehaviour:
   panelFadeTime: 0.25
   panelSlideDistance: 30
   startGameFadeTime: 1.4
-  gameSceneName: EnemyTestScene
+  gameSceneName: TutorialTest
   menuAudio: {fileID: 912206752}
   quitButton: {fileID: 1330261228}
 --- !u!4 &2135920908

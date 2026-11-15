@@ -135,7 +135,7 @@ public class ScarcityRemnant : MonoBehaviour
     public float MaxScarcity => maxScarcity;
     public float Scarcity01 => maxScarcity > 0f ? Scarcity / maxScarcity : 0f;
     public float CurrentScale => currentScale;
-    //for the BossSpriteAnimator: 0 at the start of the current state and 1 at the end (used to time the telegraph animations)
+    //for the bossspriteanimator: 0 at the start of the current state and 1 at the end (used to time the telegraph animations)
     public float StateProgress01 => stateDuration > 0f ? Mathf.Clamp01(1f - stateTimer / stateDuration) : 1f;
     public Transform Player => player;
     public Vector2 LungeDirection => lungeDirection;
@@ -373,7 +373,7 @@ public class ScarcityRemnant : MonoBehaviour
         EnterState(RemnantState.Weakening);
     }
 
-    //dDebug: skip straight to the transformation
+    //ddebug: skip straight to the transformation
     public void ForceTransform()
     {
         if (!IsActive) return;

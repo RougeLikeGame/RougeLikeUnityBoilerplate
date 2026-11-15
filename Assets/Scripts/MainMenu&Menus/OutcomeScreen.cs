@@ -24,6 +24,11 @@ public class OutcomeScreen : MonoBehaviour
     [SerializeField] private TMP_Text winStats;
     [SerializeField] private TMP_Text loseStats;
     [SerializeField] private TMP_Text loseTip;
+    [Tooltip("Optional one line under the win title that changes with how you played.")]
+    [SerializeField] private TMP_Text winEnding;
+    [SerializeField] private string peacefulEnding = "you never raised your blade. it simply let go.";
+    [SerializeField] private string kindEnding = "kindness outweighed the blade.";
+    [SerializeField] private string forcefulEnding = "you fought it, but kindness ended it.";
     [SerializeField]
     private string[] loseTips =
     {
@@ -43,7 +48,7 @@ public class OutcomeScreen : MonoBehaviour
     [SerializeField] private float titleSpreadStart = 40f;
 
     [Header("While showing")]
-    [Tooltip("e.g. PlayerMovement, PlayerAttack, PlayerDebugKeys, BossDebugKeys, EnemyDebugKeys.")]
+    [Tooltip("e.g. PlayerMovement, PlayerDebugKeys, BossDebugKeys, EnemyDebugKeys.")]
     [SerializeField] private Behaviour[] disableWhileShowing;
     [SerializeField] private bool calmEnemiesOnWin = true;
 
@@ -91,7 +96,9 @@ public class OutcomeScreen : MonoBehaviour
                 e.ForceKill();
 
         if (winStats != null)
-            winStats.text = $"Souls comforted: {Helped}     Blows struck: {Struck}     Time: {TimeText}";
+            winStats.text = $"souls {Helped}   ·   blows {Struck}   ·   {TimeText}";
+        if (winEnding != null)
+            winEnding.text = Struck == 0 ? peacefulEnding : Helped >= Struck ? kindEnding : forcefulEnding;
 
         StartCoroutine(ShowRoutine(winPanel, winTitle, winFirstSelected, winDelay, win: true));
     }
@@ -103,9 +110,7 @@ public class OutcomeScreen : MonoBehaviour
 
         if (loseStats != null)
         {
-            string scarcity = boss != null && boss.State != RemnantState.Dormant
-                ? $"Scarcity remained at {boss.Scarcity:0}     " : "";
-            loseStats.text = $"{scarcity}Souls comforted: {Helped}     Time: {TimeText}";
+            loseStats.text = $"souls {Helped}   ·   blows {Struck}   ·   {TimeText}";
         }
         if (loseTip != null && loseTips != null && loseTips.Length > 0)
             loseTip.text = loseTips[Random.Range(0, loseTips.Length)];
@@ -122,7 +127,7 @@ public class OutcomeScreen : MonoBehaviour
 
         if (menuAudio != null) { if (win) menuAudio.PlayStart(); else menuAudio.PlayBack(); }
 
-        // Start the title reveal.
+        // start the title reveal.
         animTitle = title;
         if (animTitle != null)
         {
