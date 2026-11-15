@@ -43,7 +43,6 @@ public class PlayerMovement : MonoBehaviour
         set => canMove = value;
     }
 
-    //was 0, so the sword turned off the same frame it turned on and never hit anything.
     public float attackDuration = 0.15f;
     public float swordDamage = 1f;
 
@@ -236,6 +235,14 @@ public class PlayerMovement : MonoBehaviour
         if (boss != null)
         {
             boss.ReceiveAggression();
+            return;
+        }
+
+        //it creates and other breakable objects/obstacles
+        Breakable breakable = collision.GetComponentInParent<Breakable>();
+        if(breakable != null)
+        {
+            breakable.Hit();
             return;
         }
 

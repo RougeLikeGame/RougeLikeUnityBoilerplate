@@ -6,11 +6,13 @@ using UnityEngine.Events;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public enum StartMode { OnStart, OnPlayerEnterTrigger, Manual}
+    public enum StartMode { OnStart, OnPlayerEnterTrigger, Manual }
+
     [Serializable]
     public class SpawnEntry
     {
-        public EnemyBase prefab;
+        [Tooltip("Drag the enemy PREFAB here from the Project window (e.g. Assets/PreFabs/Walker).")]
+        public GameObject prefab;
         [Min(1)] public int count = 1;
     }
 
@@ -19,18 +21,18 @@ public class EnemySpawner : MonoBehaviour
     {
         public string name = "Wave";
         public SpawnEntry[] enemies;
-        [Tooltip("Seconds to wait before this wave starts")]
+        [Tooltip("Seconds to wait before this wave starts.")]
         public float delayBefore = 1f;
     }
 
-    [Header("References the drag in stuff")]
+    [Header("References (drag in)")]
     [SerializeField] private PlayerStats playerStats;
     [SerializeField] private Transform player;
-    [Tooltip("the room is a A* grid given oto everu spawned enemy")]
+    [Tooltip("Optional: the room's A* grid, given to every spawned enemy.")]
     [SerializeField] private PathGrid pathGrid;
-    [Tooltip("empty objects palced around the room where eneimes may apper")]
+    [Tooltip("Empty objects placed around the room where enemies may appear.")]
     [SerializeField] private Transform[] spawnPoints;
-    [Tooltip("a marker sprite that is turned off and copied at each spaw point as a possible warning")]
+    [Tooltip("Optional: a marker sprite (turned OFF in the scene) copied at each spawn point as a warning.")]
     [SerializeField] private SpriteRenderer spawnMarkerTemplate;
 
     [Header("Waves")]
@@ -42,30 +44,29 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float spawnWarningTime = 0.8f;
     [SerializeField] private float delayBetweenSpawns = 0.35f;
     [SerializeField] private int maxAlive = 5;
-    [Tooltip("0=random every run and any other number = the smae layout every time")]
+    [Tooltip("0 = random every run. Any other number = the same layout every time.")]
     [SerializeField] private int seed = 0;
 
     [Header("Room lock")]
-    [Tooltip("door blockers turned on while fihgting and off when cleared")]
+    [Tooltip("Optional: door blockers turned ON while fighting and OFF when cleared.")]
     [SerializeField] private GameObject[] lockObjects;
 
     [Header("Events")]
     public UnityEvent onStarted;
     public UnityEvent onAllCleared;
+
     public int Alive { get; private set; }
     public bool Running { get; private set; }
     public bool Cleared { get; private set; }
-    private System.Random rng;
 
+    private System.Random rng;
 
     private void Awake()
     {
         if (playerStats == null || player == null)
-            Debug.LogError("EnemySpawner need drag in player stats and player");
-
+            Debug.LogError("EnemySpawner: drag in Player Stats and Player.", this);
         if (spawnPoints == null || spawnPoints.Length == 0)
-            Debug.LogError("EnemySpawner need to add at least one spawn point");
-
+            Debug.LogError("EnemySpawner: add at least one Spawn Point.", this);
         if (spawnMarkerTemplate != null) spawnMarkerTemplate.gameObject.SetActive(false);
         SetLocks(false);
     }
@@ -82,7 +83,7 @@ public class EnemySpawner : MonoBehaviour
             StartSpawning();
     }
 
-    //it starts the encounter 
+    //start the encounter 
     public void StartSpawning()
     {
         if (Running || Cleared) return;
@@ -99,51 +100,54 @@ public class EnemySpawner : MonoBehaviour
     {
         if (waves != null)
         {
-            foreach(Wave wave in waves)
+            foreach (Wave wave in waves)
             {
                 yield return new WaitForSeconds(wave.delayBefore);
 
-                List<EnemyBase> queue = BuildQueue(wave);
-                foreach(EnemyBase prefab in queue)
+                List<GameObject> queue = BuildQueue(wave);
+                foreach (GameObject prefab in queue)
                 {
                     while (Alive >= maxAlive || PlayerIsDead) yield return null;
                     yield return SpawnOne(prefab);
                     yield return new WaitForSeconds(delayBetweenSpawns);
                 }
-                //the wave is done when everythign in it is dead 
+
+                //wave is done when everything in it is dead.
                 while (Alive > 0) yield return null;
             }
         }
+
         Running = false;
         Cleared = true;
-        Debug.Log($"[Spawner] '{name}' cleared");
+        SetLocks(false);
+        Debug.Log($"[Spawner] '{name}' cleared!");
         onAllCleared?.Invoke();
     }
 
-    private List<EnemyBase> BuildQueue(Wave wave)
+    private List<GameObject> BuildQueue(Wave wave)
     {
-        var queue = new List<EnemyBase>();
+        var queue = new List<GameObject>();
         if (wave.enemies != null)
             foreach (SpawnEntry e in wave.enemies)
                 if (e != null && e.prefab != null)
                     for (int i = 0; i < e.count; i++) queue.Add(e.prefab);
 
-        //shuffle the order 
-        for(int i = queue.Count - 1;  i > 0; i--)
+        //shuffle the order (Fisher-Yates).
+        for (int i = queue.Count - 1; i > 0; i--)
         {
             int j = rng.Next(i + 1);
-            EnemyBase t = queue[i]; queue[i] = queue[j]; queue[j] = t;
+            GameObject t = queue[i]; queue[i] = queue[j]; queue[j] = t;
         }
         return queue;
     }
 
-    private IEnumerator SpawnOne(EnemyBase prefab)
+    private IEnumerator SpawnOne(GameObject prefab)
     {
         Transform point = PickPoint();
         if (point == null) yield break;
         Vector3 pos = point.position;
 
-        // Telegraph: a pulsing marker so the player is never surprised.
+        //telegraph: a pulsing marker so the player is never surprised.
         SpriteRenderer marker = null;
         if (spawnMarkerTemplate != null)
         {
@@ -165,16 +169,21 @@ public class EnemySpawner : MonoBehaviour
             yield return new WaitForSeconds(spawnWarningTime);
         }
 
-        EnemyBase enemy = Instantiate(prefab, pos, Quaternion.identity);
-        enemy.SetTarget(playerStats, player, pathGrid);
+        GameObject enemy = Instantiate(prefab, pos, Quaternion.identity);
+        enemy.SetActive(true); //in case the prefab (or a scene copy) was saved switched off
+
+        //The enemy script can be on the root or a child.
+        EnemyBase brain = enemy.GetComponentInChildren<EnemyBase>(true);
+        if (brain != null) brain.SetTarget(playerStats, player, pathGrid);
+        else Debug.LogWarning($"[Spawner] {prefab.name} has no Walker/Burrower/SkyDiver script, so it won't know where the player is.", enemy);
         Alive++;
 
-        EnemyHealth health = enemy.GetComponent<EnemyHealth>();
+        EnemyHealth health = enemy.GetComponentInChildren<EnemyHealth>(true);
         if (health != null) health.OnDied += () => Alive = Mathf.Max(0, Alive - 1);
-        else Debug.LogWarning($"[Spawner] {prefab.name} has no EnemyHealth on its root, so the spawner can't tell when it dies.", enemy);
+        else Debug.LogWarning($"[Spawner] {prefab.name} has no EnemyHealth, so the spawner can't tell when it dies.", enemy);
     }
 
-    //a reandom spawn point that is far enoguh from the palyer 
+    //A random spawn point that's far enough from the player 
     private Transform PickPoint()
     {
         if (spawnPoints == null || spawnPoints.Length == 0) return null;
@@ -183,12 +192,12 @@ public class EnemySpawner : MonoBehaviour
         Transform farthest = null;
         float farthestDist = -1f;
 
-        foreach(Transform p in spawnPoints)
+        foreach (Transform p in spawnPoints)
         {
             if (p == null) continue;
-            float d = player != null ? Vector2.Distance(p.position.normalized, player.position) : 999f;
+            float d = player != null ? Vector2.Distance(p.position, player.position) : 999f;
             if (d >= minDistanceFromPlayer) fair.Add(p);
-            if(d > farthestDist) { farthestDist = d; farthest = p; }
+            if (d > farthestDist) { farthestDist = d; farthest = p; }
         }
 
         return fair.Count > 0 ? fair[rng.Next(fair.Count)] : farthest;
@@ -218,6 +227,4 @@ public class EnemySpawner : MonoBehaviour
             Gizmos.DrawWireSphere(player.position, minDistanceFromPlayer);
         }
     }
-
-
 }

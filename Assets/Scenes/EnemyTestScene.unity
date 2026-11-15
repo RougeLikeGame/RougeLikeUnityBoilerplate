@@ -4191,17 +4191,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &969319675 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8800661543546364273, guid: 267845e737ba94c3b8b69673bde9edcf, type: 3}
-  m_PrefabInstance: {fileID: 4548876277461533653}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8d64d7cad0d1a419db7dc4ccd09dadcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::WalkerEnemy
 --- !u!1001 &1005869875
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9790,15 +9779,15 @@ PrefabInstance:
     - target: {fileID: 715201274346948685, guid: f5ab34e38c1d3da4aafef20b3844f8c7, type: 3}
       propertyPath: waves.Array.data[0].enemies.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 969319675}
+      objectReference: {fileID: 7904800332464132550, guid: 267845e737ba94c3b8b69673bde9edcf, type: 3}
     - target: {fileID: 715201274346948685, guid: f5ab34e38c1d3da4aafef20b3844f8c7, type: 3}
       propertyPath: waves.Array.data[1].enemies.Array.data[0].prefab
       value: 
-      objectReference: {fileID: 969319675}
+      objectReference: {fileID: 7904800332464132550, guid: 267845e737ba94c3b8b69673bde9edcf, type: 3}
     - target: {fileID: 715201274346948685, guid: f5ab34e38c1d3da4aafef20b3844f8c7, type: 3}
       propertyPath: waves.Array.data[1].enemies.Array.data[1].prefab
       value: 
-      objectReference: {fileID: 969319675}
+      objectReference: {fileID: 3907199060424256906, guid: 94fcb578fc1e142ae8a7b5cc04396df1, type: 3}
     - target: {fileID: 715201274346948685, guid: f5ab34e38c1d3da4aafef20b3844f8c7, type: 3}
       propertyPath: onAllCleared.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -10104,7 +10093,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7904800332464132550, guid: 267845e737ba94c3b8b69673bde9edcf, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8800661543546364273, guid: 267845e737ba94c3b8b69673bde9edcf, type: 3}
       propertyPath: player
