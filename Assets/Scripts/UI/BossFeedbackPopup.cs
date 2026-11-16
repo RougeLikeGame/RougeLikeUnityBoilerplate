@@ -15,6 +15,8 @@ public class BossFeedbackPopup : MonoBehaviour
     [SerializeField] private string starvedWord = "STARVED!";
     [SerializeField] private string firstFedHint = "your blows feed it";
     [SerializeField] private string firstStarvedHint = "kindness starves it";
+    [SerializeField] private string desperateWord = "DESPERATE!";
+    [SerializeField] private string desperateHint = "it's almost free - keep going";
 
     [Header("Look")]
     [SerializeField] private Color fedColor = new Color(1f, 0.3f, 0.2f);
@@ -43,6 +45,7 @@ public class BossFeedbackPopup : MonoBehaviour
         if (boss == null) return;
         boss.OnFed += HandleFed;
         boss.OnWeakened += HandleStarved;
+        boss.OnDesperate += HandleDesperate;
     }
 
     private void OnDisable()
@@ -50,6 +53,14 @@ public class BossFeedbackPopup : MonoBehaviour
         if (boss == null) return;
         boss.OnFed -= HandleFed;
         boss.OnWeakened -= HandleStarved;
+        boss.OnDesperate -= HandleDesperate;
+    }
+
+    private void HandleDesperate()
+    {
+        Show(desperateWord, new Color(1f, 0.55f, 0.15f));
+        ShowHint(desperateHint, new Color(1f, 0.85f, 0.5f));
+        popupTimer = showTime * 1.8f; // stays a bit longer
     }
 
     private void HandleFed()
@@ -87,7 +98,7 @@ public class BossFeedbackPopup : MonoBehaviour
         if (popupText != null)
         {
             popupTimer = Mathf.Max(0f, popupTimer - dt);
-            float p = 1f - popupTimer / showTime; // 0 at start, 1 at end
+            float p = Mathf.Clamp01(1f - popupTimer / showTime); // 0 at start, 1 at end
             popupText.transform.localPosition = popupBase + Vector3.up * riseDistance * p;
             // quick pop in, then fade
             float scale = p < 0.15f ? Mathf.Lerp(1.4f, 1f, p / 0.15f) : 1f;

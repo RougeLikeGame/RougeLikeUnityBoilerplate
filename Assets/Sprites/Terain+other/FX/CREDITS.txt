@@ -1,0 +1,7 @@
+ASCENDANT — effects & blessing icons
+
+Art/FX (smoke, dust, wisp, parry, ring, eruption, hunger orb) and Art/UI/BlessingIcons
+  "Ninja Adventure Asset Pack" by Pixel-boy & AAA — CC0. https://pixel-boy.itch.io/ninja-adventure-asset-pack
+  Files: FX/Smoke, FX/Smoke Circular, FX/Magic/Spirit (blue), FX/Magic/Shield (yellow), FX/Magic/Circle (white),
+         FX/Elemental/RockSpike, FX/Projectile/EnergyBall, UI/Skill Icon (Interact, AttackUpgrade, Sun, Heal, Sing,
+         DefenseUpgrade, Boot, Cut). Modification: renamed and reorganized.

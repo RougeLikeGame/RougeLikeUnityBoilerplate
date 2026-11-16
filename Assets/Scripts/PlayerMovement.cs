@@ -34,7 +34,9 @@ public class PlayerMovement : MonoBehaviour
     public Vector2 FacingDirection { get; private set; } = Vector2.down;
     public bool IsSprinting { get; private set; }
     public bool IsAttacking { get; private set; }
-    public float AttackReady01 => IsAttacking ? 0f : (attackCooldown > 0f ? Mathf.Clamp01(attackTimer / attackCooldown) : 1f);
+    public float AttackReady01 => IsAttacking ? 0f : (Cooldown > 0f ? Mathf.Clamp01(attackTimer / Cooldown) : 1f);
+    //blessings can shorten the cooldown
+    private float Cooldown => attackCooldown * Blessings.AttackCooldown;
     public bool IsMoving => MoveInput.sqrMagnitude > 0.01f;
     public Vector2 CurrentVelocity => GetVelocity();
 
@@ -148,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
 
         attackTimer += Time.deltaTime;
 
-        bool canAttack = attackTimer >= attackCooldown;
+        bool canAttack = attackTimer >= Cooldown;
 
         if (raw.magnitude < stickDeadzone)
             raw = Vector2.zero;
@@ -234,7 +236,7 @@ public class PlayerMovement : MonoBehaviour
         ScarcityRemnant boss = collision.GetComponentInParent<ScarcityRemnant>();
         if (boss != null)
         {
-            boss.ReceiveAggression();
+            boss.ReceiveAggression(Blessings.FeedBoss); // some blessings make hits feed it more
             return;
         }
 
@@ -249,11 +251,10 @@ public class PlayerMovement : MonoBehaviour
         //regular enemies take damage.
         EnemyHealth enemy = collision.GetComponentInParent<EnemyHealth>();
         if (enemy != null)
-            enemy.TakeDamage(swordDamage);
+            enemy.TakeDamage(swordDamage * Blessings.SwordDamage); //blessing damage
     }
 
 }
-
 
 
 
