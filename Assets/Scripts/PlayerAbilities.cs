@@ -11,6 +11,7 @@ public class PlayerAbilities : MonoBehaviour
     InputAction ability1Action, ability2Action;
     public PlayerStats stats;
     [SerializeField] Image manaBar;
+   
 
     void Start()
     {
