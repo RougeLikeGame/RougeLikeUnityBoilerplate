@@ -6,6 +6,7 @@ TagManager:
   tags:
   - ShadowBound
   - UIBar
+  - InputImage
   layers:
   - Default
   - TransparentFX
