@@ -271,7 +271,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &21895853
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1250,6 +1250,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CleansingTouch
   manaCost: 40
+  inputs: []
+  cooldownBar: {fileID: 0}
 --- !u!114 &495216904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1263,6 +1265,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::HealingWaveAbility
   manaCost: 70
+  inputs: []
+  cooldownBar: {fileID: 0}
   healAmount: 2
   healingWavePrefab: {fileID: 3165143174983390158, guid: 38afd9806d952474c870d9a70b15d1e1, type: 3}
 --- !u!1001 &528329793

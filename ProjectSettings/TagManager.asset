@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - ShadowBound
+  - UIBar
   layers:
   - Default
   - TransparentFX
