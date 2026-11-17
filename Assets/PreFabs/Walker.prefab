@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6285121797997011364}
   - component: {fileID: 8800661543546364273}
   - component: {fileID: 6720939699191884033}
+  - component: {fileID: 6147059767372957451}
   m_Layer: 0
   m_Name: Walker
   m_TagString: Untagged
@@ -190,11 +191,13 @@ MonoBehaviour:
   health: {fileID: 6285121797997011364}
   bodyCollider: {fileID: 4688820657335772085}
   bodyRenderer: {fileID: 6381315043050824398}
+  pathGrid: {fileID: 0}
   contactDamage: 1
   bodyRadius: 0.4
   playerRadius: 0.3
   minTelegraphTime: 0.6
   destroyAfterDeath: 2
+  parriedFlashColor: {r: 1, g: 0.85, b: 0.3, a: 1}
   hurtFlashColor: {r: 1, g: 1, b: 1, a: 1}
   windupColor: {r: 1, g: 0.35, b: 0.25, a: 1}
   detectRange: 5
@@ -203,6 +206,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   moveSpeed: 2.2
+  repathInterval: 0.35
+  waypointReachDistance: 0.2
   attackRange: 0.8
   windupTime: 0.5
   attackTime: 0.25
@@ -287,3 +292,25 @@ MonoBehaviour:
     fps: 8
     loop: 0
     stretchToState: 0
+--- !u!114 &6147059767372957451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7904800332464132550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36da2071518764aeb88a42684698c8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathFX
+  health: {fileID: 6285121797997011364}
+  body: {fileID: 6381315043050824398}
+  smokePrefab: {fileID: 4475229333460506469, guid: b2e7fcc1f1fa3434bb6d7038dbbbacd3, type: 3}
+  wispPrefab: {fileID: 71763109344680793, guid: 4d5dbbcb89f17864a87d7c9623f121ab, type: 3}
+  smokeOffset: {x: 0, y: 0.2}
+  wispOffset: {x: 0, y: 0.6}
+  smokeCount: 2
+  squashDelay: 0.15
+  squashTime: 0.18
+  hideWhenFlat: 1

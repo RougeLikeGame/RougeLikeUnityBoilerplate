@@ -14,7 +14,11 @@ public enum RemnantState
     Feeding, //reacting to being attacked and grows, roars
     Weakening, //reacting to a helpful action, stagger back and shrinks
     Transforming, //scarcity hits 0 and turining into abundance
-    Transformed //the encouter is won
+    Transformed, //the encouter is won
+    TelegraphVolley, //glows and aims a fan of hunger orbs
+    Volley, //fires the orbs
+    TelegraphEruption, //red circles appear on the floor
+    Eruption //rock spikes burst out of the circles
 
 }
 
@@ -106,7 +110,7 @@ public class ScarcityRemnant : MonoBehaviour
     [SerializeField] private float contactDamage = 1f;
     [Tooltip("Body raduis ar scale 1 and is used for contact adn lunge hits")]
     [SerializeField] private float bodyRadius = 0.5f;
-    [Tooltip("rough radius of the palyer and added ot hit checks ")]
+    [Tooltip("rough radius of the palyer and ot hit checks ")]
     [SerializeField] private float playerRadius = 0.3f;
 
     [Header("Reactions")]
@@ -114,6 +118,35 @@ public class ScarcityRemnant : MonoBehaviour
     [SerializeField] private float weakenStaggerTime = 0.8f;
     [SerializeField] private float weakenKnockbackSpeed = 3f;
     [SerializeField] private float transformTime = 2.5f;
+
+    [Header(" volley (stable and up) - a fan of slow orbs")]
+    [SerializeField] private TrapProjectile volleyOrbPrefab;
+    [SerializeField] private int volleyCountStable = 3;
+    [SerializeField] private int volleyCountRavenous = 5;
+    [SerializeField] private float volleySpreadAngle = 50f;
+    [SerializeField] private float volleySpeed = 5f;
+    [SerializeField] private float volleyTelegraphTime = 0.8f;
+    [SerializeField] private float volleyDamage = 1f;
+
+    [Header("eruption (ravenous and desperate) - spikes from the floor")]
+    [Tooltip("a sprite renderer prefab for the red warning circle (any circle sprite)")]
+    [SerializeField] private SpriteRenderer eruptionMarkerPrefab;
+    [Tooltip("optional SpriteFX prefab for the spikes bursting out")]
+    [SerializeField] private SpriteFX eruptionEffectPrefab;
+    [SerializeField] private int eruptionCount = 4;
+    [SerializeField] private float eruptionSpread = 2.5f;
+    [SerializeField] private float eruptionRadius = 0.7f;
+    [SerializeField] private float eruptionTelegraphTime = 1.0f;
+    [SerializeField] private float eruptionDamage = 1f;
+
+    [Header(" desperate final phase - when it's almost starved")]
+    [Tooltip("below this scarcity it gets desperate (once per fight)")]
+    [SerializeField] private float desperateBelow = 15f;
+    [Tooltip("its cooldowns are multiplied by this while desperate")]
+    [SerializeField] private float desperateCooldownMultiplier = 0.6f;
+    [SerializeField] private int desperateExtraEruptions = 2;
+    [Tooltip("while desperate, some eruptions guard the lost souls so helping gets harder")]
+    [SerializeField] private bool desperateGuardsSouls = true;
 
     [Header("Colors")]
     [Tooltip("tints the whole sprite by phase and turn this off when using the golem art so its own colors show (flashes still work)")]
@@ -135,7 +168,7 @@ public class ScarcityRemnant : MonoBehaviour
     public float MaxScarcity => maxScarcity;
     public float Scarcity01 => maxScarcity > 0f ? Scarcity / maxScarcity : 0f;
     public float CurrentScale => currentScale;
-    //for the BossSpriteAnimator: 0 at the start of the current state and 1 at the end (used to time the telegraph animations)
+    //for the bossspriteanimator: 0 at the start of the current state and 1 at the end (used to time the telegraph animations)
     public float StateProgress01 => stateDuration > 0f ? Mathf.Clamp01(1f - stateTimer / stateDuration) : 1f;
     public Transform Player => player;
     public Vector2 LungeDirection => lungeDirection;
@@ -148,6 +181,8 @@ public class ScarcityRemnant : MonoBehaviour
     public event Action OnWeakened; //helped
     public event Action OnHitPlayer;
     public event Action OnTransformed; //encounter won
+    public event Action OnDesperate; // it's almost starved and lashes out
+    public bool IsDesperate { get; private set; } 
 
 
 
@@ -165,6 +200,9 @@ public class ScarcityRemnant : MonoBehaviour
     private Color flashColor;
     private float flashTimer;
     private const float FlashDuration = 0.35f;
+    private Vector2 volleyDirection; 
+    private readonly System.Collections.Generic.List<Vector2> eruptionSpots = new System.Collections.Generic.List<Vector2>(); 
+    private readonly System.Collections.Generic.List<SpriteRenderer> eruptionMarkers = new System.Collections.Generic.List<SpriteRenderer>(); 
 
 
 
@@ -221,7 +259,7 @@ public class ScarcityRemnant : MonoBehaviour
         stateTimer -= dt;
         attackCooldownTimer -= dt;
 
-        switch (State)
+        switch(State)
         {
             case RemnantState.Awakening:
                 if (stateTimer <= 0f) EnterState(RemnantState.Stalking);
@@ -257,6 +295,24 @@ public class ScarcityRemnant : MonoBehaviour
                 break;
 
             case RemnantState.Lunge:
+                if (stateTimer <= 0f) EnterState(RemnantState.Recover);
+                break;
+
+            //the new attacks
+            case RemnantState.TelegraphVolley:
+                if (stateTimer <= 0f) EnterState(RemnantState.Volley);
+                break;
+
+            case RemnantState.Volley:
+                if (stateTimer <= 0f) EnterState(RemnantState.Recover);
+                break;
+
+            case RemnantState.TelegraphEruption:
+                UpdateEruptionMarkers();
+                if (stateTimer <= 0f) EnterState(RemnantState.Eruption);
+                break;
+
+            case RemnantState.Eruption:
                 if (stateTimer <= 0f) EnterState(RemnantState.Recover);
                 break;
 
@@ -373,7 +429,7 @@ public class ScarcityRemnant : MonoBehaviour
         EnterState(RemnantState.Weakening);
     }
 
-    //dDebug: skip straight to the transformation
+    //ddebug: skip straight to the transformation
     public void ForceTransform()
     {
         if (!IsActive) return;
@@ -422,6 +478,28 @@ public class ScarcityRemnant : MonoBehaviour
                 punch = 0.1f;
                 break;
 
+            //the new attacks
+            case RemnantState.TelegraphVolley:
+                SetTimer(Mathf.Max(minTelegraphTime, volleyTelegraphTime));
+                Vector2 aim = (Vector2)player.position - rb.position;
+                volleyDirection = aim.sqrMagnitude > 0.001f ? aim.normalized : Vector2.down;
+                break;
+
+            case RemnantState.Volley:
+                SetTimer(0.3f);
+                FireVolley();
+                break;
+
+            case RemnantState.TelegraphEruption:
+                SetTimer(Mathf.Max(minTelegraphTime, eruptionTelegraphTime));
+                PlaceEruptions();
+                break;
+
+            case RemnantState.Eruption:
+                SetTimer(0.35f);
+                DoEruption();
+                break;
+
             case RemnantState.Recover:
                 SetTimer(recoverTime);
                 StartCooldown();
@@ -445,24 +523,130 @@ public class ScarcityRemnant : MonoBehaviour
         OnStateChanged?.Invoke(State);
     }
 
+    //more attacks unlock as it gets hungrier.
+    //  weakened: slam only.  stable: + lunge, volley.  ravenous: + double slam, eruption.
+    //  desperate (almost starved): slam, volley and eruption, faster, and eruptions can guard the souls.
     private void TryChooseAttack()
     {
         if (attackCooldownTimer > 0f) return;
 
         float dist = Vector2.Distance(player.position, rb.position);
+        hitPlayerThisAttack = false;
 
         if (dist <= SlamRadius * 0.9f)
         {
-            hitPlayerThisAttack = false;
             doubleSlamDone = false;
             EnterState(RemnantState.TelegraphSlam);
+            return;
         }
-        else if (Phase != RemnantPhase.Weakened && dist >= lungeMinDistance)
-        {
-            hitPlayerThisAttack = false;
-            EnterState(RemnantState.TelegraphLunge);
-        }
+
+        bool stableUp = Phase != RemnantPhase.Weakened || IsDesperate;
+        bool canVolley = stableUp && volleyOrbPrefab != null;
+        bool canEruption = (Phase == RemnantPhase.Ravenous || IsDesperate) && eruptionMarkerPrefab != null;
+        bool canLunge = Phase != RemnantPhase.Weakened && dist >= lungeMinDistance;
+
+        //pick one of the attacks it's allowed to use
+        var options = new System.Collections.Generic.List<RemnantState>();
+        if (canLunge) options.Add(RemnantState.TelegraphLunge);
+        if (canVolley && dist >= 2.5f) options.Add(RemnantState.TelegraphVolley);
+        if (canEruption) options.Add(RemnantState.TelegraphEruption);
+
+        if (options.Count > 0)
+            EnterState(options[UnityEngine.Random.Range(0, options.Count)]);
         //otherwise keep stalking closer
+    }
+
+    // a fan of slow orbs aimed where the player was
+    private void FireVolley()
+    {
+        if (volleyOrbPrefab == null) return;
+        punch = 0.15f;
+        int count = Phase == RemnantPhase.Ravenous || IsDesperate ? volleyCountRavenous : volleyCountStable;
+        float baseAngle = Mathf.Atan2(volleyDirection.y, volleyDirection.x) * Mathf.Rad2Deg;
+        for (int i = 0; i < count; i++)
+        {
+            float t = count > 1 ? (float)i / (count - 1) - 0.5f : 0f;
+            float a = (baseAngle + t * volleySpreadAngle) * Mathf.Deg2Rad;
+            Vector2 dir = new Vector2(Mathf.Cos(a), Mathf.Sin(a));
+            TrapProjectile orb = Instantiate(volleyOrbPrefab, rb.position + dir * BodyRadius, Quaternion.identity);
+            orb.Launch(dir * volleySpeed, volleyDamage, gameObject);
+        }
+    }
+
+    //red circles on the floor around the player (or a soul, when desperate)
+    private void PlaceEruptions()
+    {
+        ClearEruptionMarkers();
+        eruptionSpots.Clear();
+
+        Vector2 center = player.position;
+        if (IsDesperate && desperateGuardsSouls && UnityEngine.Random.value < 0.5f)
+        {
+            LostSoul soul = NearestReadySoul();
+            if (soul != null) center = soul.transform.position;
+        }
+
+        int count = eruptionCount + (IsDesperate ? desperateExtraEruptions : 0);
+        eruptionSpots.Add(center); //always one right on the target
+        for (int i = 1; i < count; i++)
+            eruptionSpots.Add(center + UnityEngine.Random.insideUnitCircle * eruptionSpread);
+
+        foreach (Vector2 spot in eruptionSpots)
+        {
+            SpriteRenderer m = Instantiate(eruptionMarkerPrefab, spot, Quaternion.identity);
+            SetTelegraphSize(m, eruptionRadius * 2f, eruptionRadius * 2f);
+            eruptionMarkers.Add(m);
+        }
+        UpdateEruptionMarkers();
+    }
+
+    //the circles get more solid as the burst gets closer
+    private void UpdateEruptionMarkers()
+    {
+        float progress = stateDuration > 0f ? 1f - stateTimer / stateDuration : 1f;
+        foreach (SpriteRenderer m in eruptionMarkers)
+        {
+            if (m == null) continue;
+            m.color = new Color(telegraphColor.r, telegraphColor.g, telegraphColor.b,
+                                telegraphColor.a * Mathf.Lerp(0.25f, 1f, progress));
+        }
+    }
+
+    //spikes burst out of every circle
+    private void DoEruption()
+    {
+        punch = 0.2f;
+        bool hit = false;
+        foreach (Vector2 spot in eruptionSpots)
+        {
+            if (eruptionEffectPrefab != null) Instantiate(eruptionEffectPrefab, spot, Quaternion.identity);
+            if (!hit && Vector2.Distance(player.position, spot) <= eruptionRadius + playerRadius)
+            {
+                hit = true; //only one hit, even if circles overlap
+                DamagePlayer(eruptionDamage);
+            }
+        }
+        eruptionSpots.Clear();
+    }
+
+    private void ClearEruptionMarkers()
+    {
+        foreach (SpriteRenderer m in eruptionMarkers)
+            if (m != null) Destroy(m.gameObject);
+        eruptionMarkers.Clear();
+    }
+
+    private LostSoul NearestReadySoul()
+    {
+        LostSoul best = null;
+        float bestDist = float.MaxValue;
+        foreach (LostSoul s in FindObjectsByType<LostSoul>(FindObjectsSortMode.None))
+        {
+            if (!s.IsReady) continue;
+            float d = Vector2.Distance(s.transform.position, player.position);
+            if (d < bestDist) { bestDist = d; best = s; }
+        }
+        return best;
     }
 
     private void DoSlam()
@@ -508,6 +692,7 @@ public class ScarcityRemnant : MonoBehaviour
             if (hitPlayerThisAttack) cd += breatherAfterHit;
             if (playerStats != null && playerStats.CurrentHealth <= mercyHealthThreshold)
                 cd *= mercyCooldownMultiplier;
+            if (IsDesperate) cd *= desperateCooldownMultiplier; 
             return cd;
         }
     }
@@ -550,6 +735,16 @@ public class ScarcityRemnant : MonoBehaviour
         }
 
         UpdatePlayerVulnerability();
+
+        //almost starved, so it lashes out one last time
+        if (!IsDesperate && IsActive && Scarcity > 0f && Scarcity <= desperateBelow)
+        {
+            IsDesperate = true;
+            Flash(fedFlashColor);
+            punch = 0.4f;
+            Debug.Log("[Remnant] It's desperate!");
+            OnDesperate?.Invoke();
+        }
     }
 
     private RemnantPhase CalculatePhase()
@@ -601,7 +796,8 @@ public class ScarcityRemnant : MonoBehaviour
         }
 
         //blink while winding up an attack so it's readable even without the ground marker.
-        bool windingUp = State == RemnantState.TelegraphSlam || State == RemnantState.TelegraphLunge;
+        bool windingUp = State == RemnantState.TelegraphSlam || State == RemnantState.TelegraphLunge
+                         || State == RemnantState.TelegraphVolley || State == RemnantState.TelegraphEruption;
         if (windingUp && Mathf.FloorToInt(Time.time * 12f) % 2 == 0)
             baseColor = Color.Lerp(baseColor, Color.white, 0.5f);
 
@@ -685,6 +881,7 @@ public class ScarcityRemnant : MonoBehaviour
     {
         if (slamTelegraph != null) slamTelegraph.enabled = false;
         if (lungeTelegraph != null) lungeTelegraph.enabled = false;
+        ClearEruptionMarkers();
     }
 
     private void SetVelocity(Vector2 v)
