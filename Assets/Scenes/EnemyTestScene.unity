@@ -3061,10 +3061,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LostSoul
   boss: {fileID: 1386402470}
   player: {fileID: 1272907783}
+  playerMovement: {fileID: 0}
   body: {fileID: 1098442340}
   glow: {fileID: 206394954}
   prompt: {fileID: 32081593}
+  holdRing: {fileID: 0}
   inputActions: {fileID: -944628639613478452, guid: 706c7ae7c761643168cb65eec848dec0, type: 3}
+  spawner: {fileID: 0}
   idleFrames:
   - {fileID: 801836815628676836, guid: c4e3d6782cf2dc54a8faf7b4390c7e8b, type: 3}
   - {fileID: -748910592834371303, guid: fe3d11475f94612488d0afa904eb0828, type: 3}
@@ -3074,16 +3077,22 @@ MonoBehaviour:
   bobAmount: 0.08
   bobSpeed: 2
   interactRadius: 1.1
+  holdTime: 1.2
+  moveSpeedWhileComforting: 0.3
   helpStrength: 1
+  stateGainWithoutBoss: 10
   restTime: 7
   helpedAnimTime: 0.8
   onlyDuringEncounter: 1
+  hideUntilEncounter: 1
+  promptFormat: hold {0}  comfort
   readyColor: {r: 0.65, g: 0.9, b: 1, a: 0.85}
   restingColor: {r: 0.6, g: 0.65, b: 0.75, a: 0.25}
   helpedColor: {r: 1, g: 0.85, b: 0.45, a: 1}
   glowColor: {r: 0.55, g: 0.85, b: 1, a: 0.5}
   audioSource: {fileID: 0}
   helpClip: {fileID: 0}
+  cancelClip: {fileID: 0}
   readyAgainClip: {fileID: 0}
 --- !u!82 &627524059
 AudioSource:
@@ -4462,7 +4471,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ASCENED
+  m_text: ASCENDED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 3ae8578eb44f36a43916cb63d6e766d8, type: 2}
   m_sharedMaterial: {fileID: -7004982991520480735, guid: 3ae8578eb44f36a43916cb63d6e766d8, type: 2}
@@ -7239,10 +7248,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::LostSoul
   boss: {fileID: 1386402470}
   player: {fileID: 1272907783}
+  playerMovement: {fileID: 0}
   body: {fileID: 1942734651}
   glow: {fileID: 1963359240}
   prompt: {fileID: 329228068}
+  holdRing: {fileID: 0}
   inputActions: {fileID: -944628639613478452, guid: 706c7ae7c761643168cb65eec848dec0, type: 3}
+  spawner: {fileID: 0}
   idleFrames:
   - {fileID: 801836815628676836, guid: c4e3d6782cf2dc54a8faf7b4390c7e8b, type: 3}
   - {fileID: -748910592834371303, guid: fe3d11475f94612488d0afa904eb0828, type: 3}
@@ -7252,16 +7264,22 @@ MonoBehaviour:
   bobAmount: 0.08
   bobSpeed: 2
   interactRadius: 1.1
+  holdTime: 1.2
+  moveSpeedWhileComforting: 0.3
   helpStrength: 1
+  stateGainWithoutBoss: 10
   restTime: 7
   helpedAnimTime: 0.8
   onlyDuringEncounter: 1
+  hideUntilEncounter: 1
+  promptFormat: hold {0}  comfort
   readyColor: {r: 0.65, g: 0.9, b: 1, a: 0.85}
   restingColor: {r: 0.6, g: 0.65, b: 0.75, a: 0.25}
   helpedColor: {r: 1, g: 0.85, b: 0.45, a: 1}
   glowColor: {r: 0.55, g: 0.85, b: 1, a: 0.5}
   audioSource: {fileID: 0}
   helpClip: {fileID: 0}
+  cancelClip: {fileID: 0}
   readyAgainClip: {fileID: 0}
 --- !u!82 &1577979422
 AudioSource:
@@ -9318,6 +9336,10 @@ MonoBehaviour:
   winStats: {fileID: 2125238587}
   loseStats: {fileID: 1266224625}
   loseTip: {fileID: 1181823066}
+  winEnding: {fileID: 0}
+  peacefulEnding: you never raised your blade. it simply let go.
+  kindEnding: kindness outweighed the blade.
+  forcefulEnding: you fought it, but kindness ended it.
   loseTips:
   - The Remnant feeds on force.
   - Not every battle is won with a blade.
@@ -10344,7 +10366,13 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8005826528514927443, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
+    - targetCorrespondingSourceObject: {fileID: 5542919254459187227, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 0}
   m_SourcePrefab: {fileID: 100100000, guid: fbe53d46d253d774eaadda32d77453a4, type: 3}
 --- !u!1001 &8410106774930463299
 PrefabInstance:

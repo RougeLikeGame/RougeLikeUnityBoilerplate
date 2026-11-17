@@ -14,13 +14,14 @@ GameObject:
   - component: {fileID: 7204624603171141990}
   - component: {fileID: 1418126046575311848}
   - component: {fileID: 585809192568351536}
+  - component: {fileID: 5643573348324139140}
   m_Layer: 0
   m_Name: SkyDiver
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &223243402828679929
 Transform:
   m_ObjectHideFlags: 0
@@ -131,11 +132,13 @@ MonoBehaviour:
   health: {fileID: 7204624603171141990}
   bodyCollider: {fileID: 1735557457139203062}
   bodyRenderer: {fileID: 5005127264176655173}
+  pathGrid: {fileID: 0}
   contactDamage: 1
   bodyRadius: 0.4
   playerRadius: 0.3
   minTelegraphTime: 0.6
   destroyAfterDeath: 2
+  parriedFlashColor: {r: 1, g: 0.85, b: 0.3, a: 1}
   hurtFlashColor: {r: 1, g: 1, b: 1, a: 1}
   windupColor: {r: 1, g: 0.35, b: 0.25, a: 1}
   visual: {fileID: 5116496120913815974}
@@ -233,6 +236,28 @@ MonoBehaviour:
     fps: 8
     loop: 0
     stretchToState: 0
+--- !u!114 &5643573348324139140
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3907199060424256906}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 36da2071518764aeb88a42684698c8c4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyDeathFX
+  health: {fileID: 7204624603171141990}
+  body: {fileID: 5005127264176655173}
+  smokePrefab: {fileID: 4475229333460506469, guid: b2e7fcc1f1fa3434bb6d7038dbbbacd3, type: 3}
+  wispPrefab: {fileID: 71763109344680793, guid: 4d5dbbcb89f17864a87d7c9623f121ab, type: 3}
+  smokeOffset: {x: 0, y: 0.2}
+  wispOffset: {x: 0, y: 0.6}
+  smokeCount: 2
+  squashDelay: 0.35
+  squashTime: 0.18
+  hideWhenFlat: 1
 --- !u!1 &4606317671260292970
 GameObject:
   m_ObjectHideFlags: 0
