@@ -120,8 +120,8 @@ MonoBehaviour:
   lifeTime: 0
   drift: {x: 0, y: 0}
   randomDrift: 0
-  startScale: 0.5
-  endScale: 0.6
+  startScale: 0.7
+  endScale: 1.5
   color: {r: 0.78431374, g: 0.7058824, b: 0.6039216, a: 1}
   fadeOut: 0.3
   randomFlip: 1

@@ -119,7 +119,7 @@ MonoBehaviour:
   drift: {x: 0, y: 0.3}
   randomDrift: 0.2
   startScale: 0.8
-  endScale: 1.1
+  endScale: 1.5
   color: {r: 1, g: 1, b: 1, a: 1}
   fadeOut: 0.4
   randomFlip: 1

@@ -314,6 +314,24 @@ MonoBehaviour:
   weakenStaggerTime: 0.8
   weakenKnockbackSpeed: 3
   transformTime: 2.5
+  volleyOrbPrefab: {fileID: 3025042731253059154, guid: 05b28657540a1344c9b8251391c05dea, type: 3}
+  volleyCountStable: 3
+  volleyCountRavenous: 5
+  volleySpreadAngle: 50
+  volleySpeed: 5
+  volleyTelegraphTime: 0.8
+  volleyDamage: 1
+  eruptionMarkerPrefab: {fileID: 1886514751495641012, guid: 037e8e0c56c59584e8485608f77d1518, type: 3}
+  eruptionEffectPrefab: {fileID: 1155184200045307859, guid: 9ebfd7e0e7b20e946a03fcfc871738f3, type: 3}
+  eruptionCount: 4
+  eruptionSpread: 2.5
+  eruptionRadius: 0.7
+  eruptionTelegraphTime: 1
+  eruptionDamage: 1
+  desperateBelow: 15
+  desperateCooldownMultiplier: 0.6
+  desperateExtraEruptions: 2
+  desperateGuardsSouls: 1
   tintBodyByPhase: 1
   dormantColor: {r: 0.35, g: 0.35, b: 0.35, a: 1}
   weakenedColor: {r: 0.75, g: 0.65, b: 0.45, a: 1}
@@ -546,6 +564,8 @@ MonoBehaviour:
   starvedWord: STARVED!
   firstFedHint: your blows feed it
   firstStarvedHint: kindness starves it
+  desperateWord: DESPERATE!
+  desperateHint: it's almost free - keep going
   fedColor: {r: 1, g: 0.3, b: 0.2, a: 1}
   starvedColor: {r: 0.55, g: 0.9, b: 1, a: 1}
   showTime: 0.9
