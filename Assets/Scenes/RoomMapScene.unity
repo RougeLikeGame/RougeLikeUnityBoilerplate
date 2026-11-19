@@ -119,6 +119,41 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &632510086
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 632510087}
+  m_Layer: 5
+  m_Name: RoomContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &632510087
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 632510086}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1838100307}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &867803807
 GameObject:
   m_ObjectHideFlags: 0
@@ -227,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2303169565f694bbbc80d006296321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.RoomGenerator
-  OnLayoutGenerated:
+  OnRoomsGenerated:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1838100310}
@@ -248,9 +283,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c9b61f894ab60ac439c29138dd1cd637, type: 2}
   - {fileID: 11400000, guid: 66cfe09705a2f414f980e15af2317eb8, type: 2}
   - {fileID: 11400000, guid: c72a478240ffa6742b75b205543c219a, type: 2}
-  m_maxRooms: 2
-  m_roomWidth: 1
-  m_roomHeight: 1
+  m_maxRooms: 25
+  m_roomWidth: 5
+  m_roomHeight: 3
 --- !u!4 &986405920
 Transform:
   m_ObjectHideFlags: 0
@@ -400,7 +435,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 632510087}
   m_Father: {fileID: 1722004766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -477,6 +513,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0ca6e858657da4546b7e36ab1446412c, type: 2}
   m_tileSize: 64
   m_tile: {fileID: 7205386795782412094, guid: 5a0b9b12bbca7254498153370162f357, type: 3}
+  m_container: {fileID: 632510087}
 --- !u!114 &1838100311
 MonoBehaviour:
   m_ObjectHideFlags: 0

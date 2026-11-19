@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,22 +13,31 @@ namespace Game.RoomGeneration
     public sealed class RoomLayoutTile : MonoBehaviour
     {
         /// <summary>
-        /// The color applied to the tile when it is highlighted.
+        /// All available states of a room tile.
         /// </summary>
-        [Header("Tile Settings")]
-        [SerializeField]
-        private Color m_highlightColor;
+        private enum TileState
+        {
+            Hidden,
+            Visible,
+            Highlighted
+        }
 
         /// <summary>
-        /// The color applied to the tile when it is not highlighted.
+        /// The color applied to the tile when it is highlighted.
         /// </summary>
-        [SerializeField]
-        private Color m_baseColor;
+        [field: Header("Tile Settings")]
+        [field: SerializeField]
+        private Dictionary<TileState, Color> m_stateColors = new();
 
         /// <summary>
         /// The image of the tile.
         /// </summary>
         private Image m_image;
+
+        /// <summary>
+        /// The state of the tile.
+        /// </summary>
+        private TileState m_state;
 
         /// <summary>
         /// Initializes the tile based on the tile rule.
@@ -44,13 +55,14 @@ namespace Game.RoomGeneration
         /// <param name="enabled"></param>
         public void Highlight(bool enabled)
         {
-            m_image.color = enabled ? m_highlightColor : m_baseColor;
+            m_state = enabled ? TileState.Highlighted : TileState.Visible;
+            m_image.color = m_stateColors.GetValueOrDefault(m_state);
         }
 
         private void Awake()
         {
             m_image = GetComponent<Image>();
-            m_image.color = m_baseColor;
+            m_image.color = m_stateColors.GetValueOrDefault(m_state);
         }
     }
 }

@@ -15,7 +15,7 @@ namespace Game.RoomGeneration
         /// <summary>
         /// Invoked when the room generator generates a new layout.
         /// </summary>
-        public UnityEvent<List<Prims.Cell>, int> OnLayoutGenerated;
+        public UnityEvent<List<RoomObject>, int> OnRoomsGenerated;
 
         /// <summary>
         /// The size of the grid.
@@ -57,15 +57,14 @@ namespace Game.RoomGeneration
             foreach (Transform child in transform)
                 Destroy(child.gameObject);
 
-            StopAllCoroutines();
-            StartCoroutine(nameof(Generate));
+            Generate();
         }
 
         /// <summary>
         /// Generates each room using Prim's Algorithm.
         /// </summary>
         /// <returns></returns>
-        private IEnumerator Generate()
+        private void Generate()
         {
             uint weightSum = m_availableRooms.GetWeightSum();
             System.Random generator = new(m_seed);
@@ -75,19 +74,19 @@ namespace Game.RoomGeneration
             float halfRoomWidth = m_roomWidth / 2.0f;
             float halfRoomHeight = m_roomHeight / 2.0f;
 
-            List<Prims.Cell> layout = maze.Generate(m_maxRooms, generator);
+            List<RoomObject> rooms = new();
 
-            OnLayoutGenerated.Invoke(layout, m_gridSize);
-
-            foreach (Prims.Cell cell in layout)
+            foreach (Prims.Cell cell in maze.Generate(m_maxRooms, generator))
             {
-                RoomData randomRoom = m_availableRooms.GetWeightedElement(generator, weightSum);
-                RoomObject room = Instantiate(randomRoom.RoomObject, new(halfRoomWidth - m_roomWidth * (halfGridSize - cell.Coordinate.x), halfRoomHeight - m_roomHeight * (halfGridSize - cell.Coordinate.y)), Quaternion.identity, transform);
+                RoomData data = m_availableRooms.GetWeightedElement(generator, weightSum);
+                RoomObject room = Instantiate(data.RoomObject, new(halfRoomWidth - m_roomWidth * (halfGridSize - cell.Coordinate.x), halfRoomHeight - m_roomHeight * (halfGridSize - cell.Coordinate.y)), Quaternion.identity, transform);
 
-                room.Initialize(cell);
+                room.Initialize(data, cell);
 
-                yield return new WaitForSeconds(0.20f);
+                rooms.Add(room);
             }
+
+            OnRoomsGenerated.Invoke(rooms, m_gridSize);
         }
     }
 }

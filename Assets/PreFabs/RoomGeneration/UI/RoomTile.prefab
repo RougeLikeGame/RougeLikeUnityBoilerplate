@@ -88,5 +88,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 052a8a09ec3a65049bb3af7dd26800fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.RoomLayoutTile
-  m_highlightColor: {r: 1, g: 1, b: 1, a: 1}
-  m_baseColor: {r: 0, g: 0, b: 0, a: 0.39215687}
+  m_stateColors:
+  - key: 0
+    value: {r: 0, g: 0, b: 0, a: 0}
+  - key: 2
+    value: {r: 1, g: 1, b: 1, a: 1}
+  - key: 1
+    value: {r: 0, g: 0, b: 0, a: 0.39215687}
