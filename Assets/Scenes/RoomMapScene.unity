@@ -227,6 +227,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a2303169565f694bbbc80d006296321, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.RoomGenerator
+  OnLayoutGenerated:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1838100310}
+        m_TargetAssemblyTypeName: Game.RoomGeneration.RoomLayoutMap, Assembly-CSharp
+        m_MethodName: GenerateLayout
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_gridSize: 5
   m_seed: 1
   m_availableRooms:
@@ -251,41 +266,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &995521890
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 995521891}
-  m_Layer: 5
-  m_Name: RoomContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &995521891
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 995521890}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1838100307}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.1, y: 0.1}
-  m_AnchorMax: {x: 0.9, y: 0.9}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1722004762
 GameObject:
   m_ObjectHideFlags: 0
@@ -400,6 +380,8 @@ GameObject:
   - component: {fileID: 1838100307}
   - component: {fileID: 1838100309}
   - component: {fileID: 1838100308}
+  - component: {fileID: 1838100311}
+  - component: {fileID: 1838100310}
   m_Layer: 5
   m_Name: RoomLayoutMap
   m_TagString: Untagged
@@ -418,8 +400,7 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 995521891}
+  m_Children: []
   m_Father: {fileID: 1722004766}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -465,6 +446,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1838100306}
   m_CullTransparentMesh: 1
+--- !u!114 &1838100310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838100306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a41b5ded41e52b243859050d99c332df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Game.RoomGeneration.RoomLayoutMap
+  m_rules:
+  - {fileID: 11400000, guid: 2a001d6a6aafcb64480c3d454b1366e2, type: 2}
+  - {fileID: 11400000, guid: 382ee112eea446046bccbce3c475af00, type: 2}
+  - {fileID: 11400000, guid: 842bb86672be0864cab72d1b0011dc84, type: 2}
+  - {fileID: 11400000, guid: 60b9153d6f108d84285c80208b48fa6b, type: 2}
+  - {fileID: 11400000, guid: 2886d54de87497245bff08f198557f2a, type: 2}
+  - {fileID: 11400000, guid: eb0af3012cefe634e9d7793c2701f8d1, type: 2}
+  - {fileID: 11400000, guid: 6c3144f43a9a64d4f9138596f6c9c6ba, type: 2}
+  - {fileID: 11400000, guid: 896b8747235b95244ab9a8b85b535462, type: 2}
+  - {fileID: 11400000, guid: c1b70e729cb0c904ca619b9bfbef2ee3, type: 2}
+  - {fileID: 11400000, guid: 6fb65ef332d09414f8784bdf2cdf4f51, type: 2}
+  - {fileID: 11400000, guid: f9e5d73e1195d5d448237af3befb39fd, type: 2}
+  - {fileID: 11400000, guid: 5b4ab74582b804b41a25c1c132d5be08, type: 2}
+  - {fileID: 11400000, guid: 70d7c4dd6a413fd498ebac8379f3296d, type: 2}
+  - {fileID: 11400000, guid: 7e0d87d339b53b3438de8ba2fc61c307, type: 2}
+  - {fileID: 11400000, guid: ff335392e05ed6140867eda24c549968, type: 2}
+  - {fileID: 11400000, guid: 0ca6e858657da4546b7e36ab1446412c, type: 2}
+  m_tileSize: 64
+  m_tile: {fileID: 7205386795782412094, guid: 5a0b9b12bbca7254498153370162f357, type: 3}
+--- !u!114 &1838100311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1838100306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3312d7739989d2b4e91e6319e9a96d76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
+  m_Padding: {x: 20, y: 20, z: 20, w: 20}
+  m_Softness: {x: 10, y: 10}
 --- !u!1 &1873193069
 GameObject:
   m_ObjectHideFlags: 0

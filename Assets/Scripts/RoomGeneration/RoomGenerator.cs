@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Game.RoomGeneration
 {
@@ -11,6 +12,11 @@ namespace Game.RoomGeneration
     /// </summary>
     public sealed class RoomGenerator : MonoBehaviour
     {
+        /// <summary>
+        /// Invoked when the room generator generates a new layout.
+        /// </summary>
+        public UnityEvent<List<Prims.Cell>, int> OnLayoutGenerated;
+
         /// <summary>
         /// The size of the grid.
         /// </summary>
@@ -69,7 +75,11 @@ namespace Game.RoomGeneration
             float halfRoomWidth = m_roomWidth / 2.0f;
             float halfRoomHeight = m_roomHeight / 2.0f;
 
-            foreach (Prims.Cell cell in maze.Generate(m_maxRooms, generator))
+            List<Prims.Cell> layout = maze.Generate(m_maxRooms, generator);
+
+            OnLayoutGenerated.Invoke(layout, m_gridSize);
+
+            foreach (Prims.Cell cell in layout)
             {
                 RoomData randomRoom = m_availableRooms.GetWeightedElement(generator, weightSum);
                 RoomObject room = Instantiate(randomRoom.RoomObject, new(halfRoomWidth - m_roomWidth * (halfGridSize - cell.Coordinate.x), halfRoomHeight - m_roomHeight * (halfGridSize - cell.Coordinate.y)), Quaternion.identity, transform);

@@ -6,6 +6,7 @@ namespace Game.RoomGeneration
     /// <summary>
     /// Rules for a room layout tile. If a generated room matches with the rules, the visuals of the room will be reflected on it's tile.
     /// </summary>
+    [CreateAssetMenu(fileName = "RoomTileRule", menuName = "ScriptableObjects/RoomTileRule")]
     public sealed class RoomLayoutTileRule : ScriptableObject
     {
         /// <summary>
