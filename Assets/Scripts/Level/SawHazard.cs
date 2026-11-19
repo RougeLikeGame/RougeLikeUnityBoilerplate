@@ -101,7 +101,7 @@ public class SawHazard : MonoBehaviour
         if (eh == null) return;
         if (lastEnemyHit.TryGetValue(eh, out float t) && Time.time - t < enemyHitCooldown) return;
         lastEnemyHit[eh] = Time.time;
-        eh.TakeDamage(enemyDamage);
+        eh.TakeDamage(enemyDamage,this.gameObject);
     }
 
     private void OnDrawGizmos()

@@ -175,7 +175,6 @@ public class PlayerMovement : MonoBehaviour
             float angle = (int)animator.CurrentFacing * 90;
             sword.transform.SetPositionAndRotation(sword.transform.position, Quaternion.Euler(0, 0, angle));
 
-            Debug.Log("Sword angle: " + angle.ToString());
             if (attackTimer >= attackDuration)
             {
                 attackTimer = 0;
@@ -251,7 +250,7 @@ public class PlayerMovement : MonoBehaviour
         //regular enemies take damage.
         EnemyHealth enemy = collision.GetComponentInParent<EnemyHealth>();
         if (enemy != null)
-            enemy.TakeDamage(swordDamage * Blessings.SwordDamage); //blessing damage
+            enemy.TakeDamage(swordDamage * Blessings.SwordDamage,this.gameObject); //blessing damage
     }
 
 }

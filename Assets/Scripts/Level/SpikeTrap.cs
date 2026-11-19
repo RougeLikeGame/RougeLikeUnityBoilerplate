@@ -142,7 +142,7 @@ public class SpikeTrap : MonoBehaviour
 
             if (!hurtEnemies) continue;
             EnemyHealth eh = c.GetComponentInParent<EnemyHealth>();
-            if (eh != null && hitThisCycle.Add(eh)) eh.TakeDamage(enemyDamage);
+            if (eh != null && hitThisCycle.Add(eh)) eh.TakeDamage(enemyDamage, this.gameObject);
         }
     }
 

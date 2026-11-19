@@ -51,12 +51,6 @@ public class SlownessEnemy : ShadowBoundEnemy
         {
             sprite.color = new Color(1f, 1f, 1f, player.CurrentPerception.value);
         }
-        Keyboard kb = Keyboard.current;
-        if (kb == null) return;
-        if (kb.fKey.wasPressedThisFrame) 
-        {
-            Die();
-        }
     }
 
     public override void Die() 

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 // shared code for all regular enemies (walker, burrower, sky diver).
@@ -23,6 +24,8 @@ public abstract class EnemyBase : MonoBehaviour
     [Tooltip("Optional: the room's A* grid, so ground enemies walk around obstacles. The spawner fills this in for spawned enemies.")]
     [SerializeField] protected PathGrid pathGrid;
 
+    [SerializeField] protected GameManager gameManager;
+
     [Header("Shared")]
     [SerializeField] protected float contactDamage = 1f;
     [Tooltip("Rough radius of the enemy's body, used for touch and attack hits.")]
@@ -39,6 +42,8 @@ public abstract class EnemyBase : MonoBehaviour
     [SerializeField] protected Color hurtFlashColor = new Color(1f, 1f, 1f);
     [SerializeField] protected Color windupColor = new Color(1f, 0.35f, 0.25f);
 
+    [SerializeField] protected float stunDuration = 1.5f;
+
     // ---------------- for the animator / other scripts ----------------
     public abstract string AnimKey { get; }
     // all animation names this enemy uses (for the animator's "fill animation names" menu).
@@ -47,6 +52,9 @@ public abstract class EnemyBase : MonoBehaviour
     public Vector2 Facing { get; protected set; } = Vector2.right;
     public bool FacingLocked { get; protected set; }
     public bool IsDead { get; private set; }
+
+    public bool IsStunned { get; private set; }
+    protected GameObject lastDamageSource;
 
     public event Action<string> OnStateChanged;
 
@@ -137,7 +145,7 @@ public abstract class EnemyBase : MonoBehaviour
     // makes sure a warning is never shorter than mintelegraphtime.
     protected float TelegraphTime(float wanted) => Mathf.Max(minTelegraphTime, wanted);
 
-    protected bool CanTarget => player != null && playerStats != null && !playerDead && !IsDead;
+    protected bool CanTarget => player != null && playerStats != null && !playerDead && !IsDead && !IsStunned;
 
     protected float DistToPlayer => player != null ? Vector2.Distance(player.position, transform.position) : 9999f;
 
@@ -181,6 +189,20 @@ public abstract class EnemyBase : MonoBehaviour
     {
         Flash(parriedFlashColor);
         OnHurt(0f);
+        StartCoroutine(Stun(stunDuration));
+    }
+
+    private IEnumerator Stun(float duration) 
+    {
+        float elapsedTime = 0f;
+        IsStunned = true;
+
+        while (elapsedTime < duration) 
+        {
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        IsStunned = false;
     }
 
     protected void CheckContactDamage()
@@ -257,11 +279,12 @@ public abstract class EnemyBase : MonoBehaviour
         bodyRenderer.color = c;
     }
 
-    private void HandleHurt(float amount)
+    private void HandleHurt(float amount, GameObject source)
     {
         if (IsDead) return;
         Flash(hurtFlashColor);
         OnHurt(amount);
+        lastDamageSource = source;
     }
 
     private void HandleDeath()
@@ -271,6 +294,27 @@ public abstract class EnemyBase : MonoBehaviour
         blink = false;
         SetVelocity(Vector2.zero);
         if (bodyCollider != null) bodyCollider.enabled = false;
+        if (lastDamageSource.CompareTag("Player")) 
+        {
+            if (IsStunned)
+            {
+                gameManager.ChangeState(GameManager.StateSource.Parry);
+            }
+            else 
+            {
+                gameManager.ChangeState(GameManager.StateSource.Player);
+            }
+
+        
+        }else if (lastDamageSource.CompareTag("Trap"))
+        {
+                
+                gameManager.ChangeState(GameManager.StateSource.Trap);
+
+
+        }
+
+
         OnDeath();
         NotifyStateChanged();
         if (destroyAfterDeath > 0f) Destroy(gameObject, destroyAfterDeath);

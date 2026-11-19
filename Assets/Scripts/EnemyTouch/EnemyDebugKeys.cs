@@ -14,7 +14,7 @@ public class EnemyDebugKeys : MonoBehaviour
 
         int hits = 0;
         foreach (EnemyHealth e in new List<EnemyHealth>(EnemyHealth.All))
-            if (e.TakeDamage(damage)) hits++;
+            if (e.TakeDamage(damage, null)) hits++;
 
         Debug.Log($"[Enemies] Debug hit: {hits} enemies took {damage} damage.");
     }

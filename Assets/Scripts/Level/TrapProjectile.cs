@@ -52,7 +52,7 @@ public class TrapProjectile : MonoBehaviour
         if(hurtEnemies)
         {
             EnemyHealth eh = other.GetComponentInParent<EnemyHealth>();
-            if(eh != null && eh.TakeDamage(damage)) { Destroy(gameObject); return; }
+            if(eh != null && eh.TakeDamage(damage,this.gameObject)) { Destroy(gameObject); return; }
         }
 
         //if it hits a wall or rock

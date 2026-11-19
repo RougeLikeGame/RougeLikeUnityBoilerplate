@@ -11,7 +11,7 @@ public class Door : MonoBehaviour
         West
     };
     [SerializeField] DoorSide doorSide;
-
+    [SerializeField] GameManager gm;
     Vector3 northTransform = new Vector3(0, 2f,0);
     Vector3 southTransform = new Vector3(0, -2f, 0);
     Vector3 eastTransform = new Vector3(2f, 0, 0);
@@ -68,6 +68,7 @@ public class Door : MonoBehaviour
                     collision.gameObject.transform.position += westTransform;
                     break;
             }
+            gm.FinishRoom();
             transform.parent.gameObject.SetActive(false);
         }
     }

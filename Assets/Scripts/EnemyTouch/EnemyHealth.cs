@@ -13,7 +13,7 @@ public class EnemyHealth : MonoBehaviour
     //Set by the enemy when it can't be hit 
     public bool Invulnerable { get; set; }
 
-    public event Action<float> OnHurt;   // damage taken
+    public event Action<float,GameObject> OnHurt;   // damage taken
     public event Action OnDied;
 
     //Every living enemy, so debug tools (and later, room-clear checks) can find them.
@@ -39,12 +39,12 @@ public class EnemyHealth : MonoBehaviour
     }
 
     //Returns true if the hit actually landed
-    public bool TakeDamage(float amount)
+    public bool TakeDamage(float amount, GameObject src)
     {
         if (IsDead || Invulnerable || amount <= 0f) return false;
 
         CurrentHealth = Mathf.Max(0f, CurrentHealth - amount);
-        OnHurt?.Invoke(amount);
+        OnHurt?.Invoke(amount,src);
 
         if (CurrentHealth <= 0f)
         {
@@ -53,4 +53,5 @@ public class EnemyHealth : MonoBehaviour
         }
         return true;
     }
+
 }
