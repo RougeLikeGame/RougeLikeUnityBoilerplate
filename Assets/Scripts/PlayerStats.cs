@@ -111,6 +111,7 @@ public class PlayerStats : MonoBehaviour
             OnDied?.Invoke();
     }
 
+
     //Instantly kills the player, ignoring invincibility
     public void Kill()
     {

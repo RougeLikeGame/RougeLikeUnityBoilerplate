@@ -7,6 +7,9 @@ TagManager:
   - Boss
   - Enemies
   - boss
+  - ShadowBound
+  - UIBar
+  - InputImage
   layers:
   - Default
   - TransparentFX
@@ -41,8 +44,17 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1514243101
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Shadow
+    uniqueID: 1803491361
+    locked: 0
+  - name: Abilities
+    uniqueID: 2815974343
     locked: 0
   m_RenderingLayers:
   - Default
