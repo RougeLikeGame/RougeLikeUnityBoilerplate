@@ -413,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ceeb492647602584092d7d33151e07bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PathGrid
-  size: {x: 0.1, y: 0.1}
+  size: {x: 5, y: 5}
   cellSize: 0.5
   obstacleMask:
     serializedVersion: 2
@@ -1868,63 +1868,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 603771424}
   m_CullTransparentMesh: 1
---- !u!1001 &608906425
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -6.92
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.5007226
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4760941627651413918, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6853201073970677682, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
-      propertyPath: m_Name
-      value: SpikeTrap
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 9731a231f79b0984eb3b37f3d818d956, type: 3}
 --- !u!1 &629755392
 GameObject:
   m_ObjectHideFlags: 0
@@ -4750,4 +4693,3 @@ SceneRoots:
   - {fileID: 1654236942}
   - {fileID: 1781495655}
   - {fileID: 85758741}
-  - {fileID: 608906425}
