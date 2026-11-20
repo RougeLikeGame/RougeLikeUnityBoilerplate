@@ -94,11 +94,15 @@ Tester 7: ---------------------------------------------------
 
 Overall Themes: ---------------------------------------------------
 
-Onboarding: 1
+Onboarding: 3
 
-Controls: 1
+Controls: 2
 
-Combat: 1
+Combat: 2
+
+Difficulty: 1
+
+Bugs: 1
 
 Fixed for Beta
 - T1 Boss too easy -> hold-to-comfort, cancel on hit, longer soul rest 
