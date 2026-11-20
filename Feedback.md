@@ -99,3 +99,24 @@ Onboarding: 1
 Controls: 1
 
 Combat: 1
+
+Fixed for Beta
+- T1 Boss too easy -> hold-to-comfort, cancel on hit, longer soul rest 
+- T3 Slow sword -> cooldown 0.35 s + attack-ready bar
+- T5 Unfair spikes -> damage only when fully up, smaller area 
+- T4 Unclear HUD -> labelled health/light bars, FED!/STARVED!, shorter outcome text 
+- T9 Walking off-screen -> closed arena walls 
+- T5 Sword hitting behind -> swings around a pivot 
+- T2 Souls usable only after boss wakes -> hidden until the fight
+- T6 Walker stuck on rock -> rock collider on the Obstacles layer 
+- T7 Slow start -> shorter first-wave delay 
+- T8 Keyboard layout -> key rebinding, prompts show real keys 
+
+Planned for Later
+- T6 Boss doesn't path around rocks 
+- T5 Boss telegraph + contact damage audit 
+- T5 Walker wind-up readability 
+- T2 Tutorial rooms, or cut and keep the in-fight hints
+- T6 Boss knockback "leash" after comfort
+- T9 Consistent sprite scale 
+
