@@ -1,0 +1,29 @@
+BETA
+
+Play it: https://aaronninja1.itch.io/ascendant
+Playtest feedback: FEEDBACK.md
+
+### Controls
+| Action | Keyboard
+| Move | WASD
+| Sprint | Left Shift 
+| Attack | F 
+| Comfort a soul | hold E 
+| Pause | P (or Esc)
+
+### Playtest fixes (from Testing Session 1)
+- Boss no longer trivial:** comforting a soul now means holding E for 1.2 s. It slows you and cancels if you're hit. Souls rest longer and come back in new spots. 
+- Faster sword: cooldown 0.35 s (was 0.7), plus a ready bar under the player. 
+- Fair spikes: they only hurt once fully up, with a smaller damage area.
+- Clearer HUD: labelled HEALTH and YOUR LIGHT bars, a named boss bar, FED!/STARVED! popups, and a shorter outcome screen.
+- Closed arena walls: you can't walk off-screen anymore. 
+
+### Moved to RC or cut
+- RC (fixes only): boss pathing around rocks, the boss telegraph audit, walker wind-up readability, the boss knockback "leash", consistent sprite scale.
+- RC or cut: tutorial rooms.
+
+### Known bugs
+- In the browser, Esc may leave fullscreen instead of pausing. Use P.
+- The boss can get stuck behind large rocks (fix planned for RC).
+- Burrowers and Sky Divers ignore obstacles on purpose (they travel under and over them).
+- Enemies walk onto spikes on purpose (you can lure them in).
