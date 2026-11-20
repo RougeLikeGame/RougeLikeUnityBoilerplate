@@ -30,6 +30,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
 
     public enum Facing { Down, Right, Up, Left }
     public Facing CurrentFacing { get; private set; } = Facing.Down;
+    public float SprintFpsMultiplier => sprintFpsMultiplier;
 
     private PlayerMovement movement;
     private Sprite[] currentFrames;
@@ -41,7 +42,7 @@ public class PlayerSpriteAnimator : MonoBehaviour
         movement = GetComponent<PlayerMovement>();
         if (spriteRenderer == null)
             spriteRenderer = GetComponentInChildren<SpriteRenderer>();
-        movement.attackDuration =  GetFrames(Facing.Down, false, true, out bool flipX).Length/ attackFps;
+        movement.attackDuration = GetFrames(Facing.Down, false, true, out bool flipX).Length/ attackFps;
     }
 
     //LateUpdate runs after PlayerMovement.Update, so facing is already up to date.

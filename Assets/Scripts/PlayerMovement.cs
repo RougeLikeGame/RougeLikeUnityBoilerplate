@@ -1,3 +1,6 @@
+using System.Collections.Generic;
+using System.Linq;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -46,6 +49,7 @@ public class PlayerMovement : MonoBehaviour
         set => canMove = value;
     }
     public float attackDuration = 0.15f;
+    private float baseAttackDuration;
     public float swordDamage = 1f;
 
     //multiplier other systems can change e.g. slow when state meter is low, or a hidden enemy is "attached"
@@ -59,6 +63,7 @@ public class PlayerMovement : MonoBehaviour
     private InputAction attackAction;
     private bool createdActionsInCode;
     private float attackTimer = 0;
+    private List<GameObject> enemies = new List<GameObject>();
 
     private void Awake()
     {
@@ -76,6 +81,11 @@ public class PlayerMovement : MonoBehaviour
         attackTimer = attackCooldown;
 
         SetUpInput();
+    }
+
+    private void Start()
+    {
+        baseAttackDuration = attackDuration;
     }
 
     private void SetUpInput()
@@ -165,6 +175,8 @@ public class PlayerMovement : MonoBehaviour
         {
             IsAttacking = true;
             attackTimer = 0f;
+            if (IsSprinting)
+                attackDuration *= (1 / animator.SprintFpsMultiplier);
         }
 
         if (IsMoving)
@@ -181,6 +193,8 @@ public class PlayerMovement : MonoBehaviour
                 attackTimer = 0;
                 IsAttacking = false;
                 sword.enabled = false;
+                enemies.Clear();
+                attackDuration = baseAttackDuration;
             }
         }
 
@@ -234,24 +248,29 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Enemy hit: " + collision.name);
         //find the boss by its script instead of the "boss" tag, so any collider on it (or its children) counts.
         ScarcityRemnant boss = collision.GetComponentInParent<ScarcityRemnant>();
-        if (boss != null)
+        if (boss != null && !enemies.Contains(collision.gameObject))
         {
             boss.ReceiveAggression(Blessings.FeedBoss); // some blessings make hits feed it more
+            enemies.Add(collision.gameObject);
             return;
         }
 
         //crates and other breakable obstacles.
         Breakable breakable = collision.GetComponentInParent<Breakable>();
-        if (breakable != null)
+        if (breakable != null && !enemies.Contains(collision.gameObject))
         {
             breakable.Hit();
+            enemies.Add(collision.gameObject);
             return;
         }
 
         //regular enemies take damage.
         EnemyHealth enemy = collision.GetComponentInParent<EnemyHealth>();
-        if (enemy != null)
+        if (enemy != null && !enemies.Contains(collision.gameObject))
+        {
             enemy.TakeDamage(swordDamage * Blessings.SwordDamage); //blessing damage
+            enemies.Add(collision.gameObject);
+        }
     }
 
 }
